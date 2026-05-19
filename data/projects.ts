@@ -123,22 +123,144 @@ export const projects: Project[] = [
   },
   {
     id: "structural-design",
-    title: "Structural Design Automation",
+    title: "Measurement Automation for Structural Design",
     description:
-      "Web app for civil engineers to automate structural measurements and export results to Excel.",
+      "Enterprise-grade automation platform enabling civil engineers to perform structural calculations with real-time validation and seamless Excel integration.",
     longDescription:
-      "Full-stack tool that automates structural measurements, performs real-time calculations, and exports results to Excel for design documentation. Delivered as a production-ready engineering workflow optimizer.",
+      "Comprehensive engineering automation system built with Java Spring backend and JavaScript frontend. Streamlines structural design workflows with automated calculations, instant validation, and one-click Excel report generation for design documentation and client delivery.",
     emoji: "📐",
-    technologies: ["Java Spring", "JavaScript", "HTML5", "CSS"],
+    technologies: ["Java Spring", "JavaScript", "HTML5", "CSS3"],
+    categories: ["fullstack"],
+    status: "production",
+    role: "Full-Stack Developer",
+    githubUrl: "https://github.com/raseldc/civil/tree/dev",
+    liveUrl: "http://103.142.184.74:8001/CivilProject/login",
+    features: [
+      "Real-time calculation engine",
+      "Automated measurement validation",
+      "Excel export with formatting",
+      "Intuitive engineering interface"
+    ]
+  },
+  {
+    id: "intelligent-chessboard",
+    title: "Intelligent Chess Board",
+    description:
+      "IoT-enabled chess system leveraging hardware-software integration to deliver responsive AI-generated moves through smart LED feedback.",
+    longDescription:
+      "Hardware-software integration project combining Arduino microcontroller with reed switches, proximity sensors, and LED indicators to create an interactive chess experience. Implements game logic for move validation and AI-powered response generation, demonstrating advanced embedded systems design.",
+    emoji: "♟️",
+    technologies: ["Arduino", "C++", "Embedded Systems", "Game Logic"],
+    categories: ["iot", "fullstack"],
+    status: "archived",
+    role: "Hardware & Software Engineer",
+    githubUrl: "https://github.com/LabibTajremin/Intelligent_chessboard",
+    liveUrl: "https://www.youtube.com/watch?v=XdiYR49XbgI",
+    features: [
+      "Real-time move detection with reed switches",
+      "AI move generation engine",
+      "LED-based board feedback system",
+      "Complete game state management"
+    ]
+  },
+  {
+    id: "catch-it-game",
+    title: "Catch It - Dynamic Game Engine",
+    description:
+      "Graphics-intensive game featuring adaptive difficulty scaling and physics-based collision detection for engaging user experience.",
+    longDescription:
+      "C-based game engine showcasing graphics programming fundamentals with I-Graphics library. Features dynamic difficulty progression that adapts ball-falling speed and spawn patterns based on player performance, coupled with collision detection and score management systems.",
+    emoji: "🎮",
+    technologies: ["C", "Graphics Programming", "Game Physics"],
+    categories: ["game", "fullstack"],
+    status: "archived",
+    role: "Game Developer",
+    githubUrl: "https://github.com/LabibTajremin/Catch_it",
+    features: [
+      "Progressive difficulty scaling",
+      "Real-time physics engine",
+      "Collision detection system",
+      "Score tracking and leaderboard"
+    ]
+  },
+  {
+    id: "store-management",
+    title: "Store Management System",
+    description:
+      "Enterprise desktop application providing centralized inventory and warehouse monitoring with intuitive graphical interface.",
+    longDescription:
+      "Java Swing/AWT-based desktop application designed for retail operations teams. Delivers real-time inventory tracking, stock management, warehouse operations oversight, and reporting capabilities with a user-friendly GUI. Built to streamline shop and warehouse operations.",
+    emoji: "🏪",
+    technologies: ["Java", "Swing", "AWT", "SQL"],
     categories: ["fullstack"],
     status: "archived",
-    role: "Developer",
-    githubUrl: "https://github.com/LabibTajremin",
+    role: "Desktop Application Developer",
+    githubUrl: "https://github.com/LabibTajremin/Store_magement_system",
     features: [
-      "Automated measurement engine",
-      "Real-time calculations",
-      "Excel export support",
-      "Intuitive UI"
+      "Real-time inventory tracking",
+      "Multi-location warehouse support",
+      "Stock movement history",
+      "Reporting and analytics"
+    ]
+  },
+  {
+    id: "getlift",
+    title: "GetLift - Ride-Sharing Platform",
+    description:
+      "Full-stack ride-sharing platform connecting drivers and passengers with robust booking system and real-time dispatch management.",
+    longDescription:
+      "Comprehensive web-based ride-sharing solution supporting both car and bike categories. Features user authentication, real-time ride booking, driver-passenger matching logic, payment processing, and trip tracking. Built with PHP backend and MySQL database for reliability and scalability.",
+    emoji: "🚗",
+    technologies: ["PHP", "MySQL", "HTML5", "CSS3"],
+    categories: ["fullstack"],
+    status: "archived",
+    role: "Full-Stack Developer",
+    githubUrl: "https://github.com/LabibTajremin/Getlift",
+    features: [
+      "Dual-category booking system (cars & bikes)",
+      "Real-time driver-passenger matching",
+      "Integrated payment processing",
+      "Trip history and ratings"
+    ]
+  },
+  {
+    id: "iot-vending-machine",
+    title: "IoT Smart Vending Machine",
+    description:
+      "Connected vending system featuring RFID authentication and WiFi-enabled remote monitoring for seamless transactions.",
+    longDescription:
+      "Advanced IoT vending machine combining Arduino microcontroller with ESP8266 WiFi module for cloud connectivity. Implements RFID card authentication for contactless payments, real-time transaction logging, inventory monitoring, and remote system management capabilities.",
+    emoji: "🤖",
+    technologies: ["Arduino", "ESP8266", "RFID", "IoT", "C++"],
+    categories: ["iot", "fullstack"],
+    status: "archived",
+    role: "IoT Engineer",
+    githubUrl: "https://github.com/LabibTajremin/Vending_Machine",
+    features: [
+      "RFID card authentication",
+      "WiFi connectivity and cloud sync",
+      "Real-time inventory management",
+      "Transaction logging and analytics"
+    ]
+  },
+  {
+    id: "potho-shishur-alo",
+    title: "Potho Shishur Alo - Donation Platform",
+    description:
+      "Social-impact web platform enabling secure donations for street children with transparent fund tracking and donor engagement.",
+    longDescription:
+      "Laravel-based donation management system creating meaningful social impact. Features secure payment integration, donor profile management, real-time donation tracking, and comprehensive fund allocation monitoring. Combines modern web technology with mission-driven purpose for community support.",
+    emoji: "💝",
+    technologies: ["Laravel", "MySQL", "PHP", "JavaScript"],
+    categories: ["fullstack"],
+    status: "production",
+    role: "Full-Stack Developer",
+    githubUrl: "https://github.com/LabibTajremin/potho_shishur_alo",
+    features: [
+      "Secure donation processing",
+      "Donor profile management",
+      "Real-time fund tracking",
+      "Impact reporting and transparency"
     ]
   }
 ];
@@ -149,5 +271,7 @@ export const projectFilters: { label: string; value: "all" | Project["categories
   { label: "Enterprise", value: "enterprise" },
   { label: "Full Stack", value: "fullstack" },
   { label: "Low-Code", value: "lowcode" },
-  { label: "Backend", value: "backend" }
+  { label: "Backend", value: "backend" },
+  { label: "IoT", value: "iot" },
+  { label: "Games", value: "game" }
 ];

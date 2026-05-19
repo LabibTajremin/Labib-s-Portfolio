@@ -36,7 +36,9 @@ export type ProjectCategory =
   | "enterprise"
   | "fullstack"
   | "lowcode"
-  | "backend";
+  | "backend"
+  | "iot"
+  | "game";
 
 export interface Project {
   id: string;
