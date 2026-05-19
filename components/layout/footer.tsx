@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { personalInfo } from "@/data/personalInfo";
 import { socialLinks } from "@/data/socialLinks";
 
@@ -17,7 +17,7 @@ const DOCS = [
   { label: "Download Cover Letter", href: "/cover-letter.pdf", download: true }
 ];
 
-const ICONS = { github: Github, linkedin: Linkedin, mail: Mail, phone: Phone };
+const ICONS = { github: Github, linkedin: Linkedin, mail: Mail, phone: Phone, map: MapPin } as const;
 
 export function Footer() {
   const year = new Date().getFullYear();

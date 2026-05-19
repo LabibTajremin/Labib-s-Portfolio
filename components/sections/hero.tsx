@@ -90,7 +90,7 @@ export function Hero() {
               className="mt-5 font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-[5.5rem]"
             >
               <span className="block">
-                Hi, I'm <span className="gradient-text">{personalInfo.firstName}</span>
+                Hi, I&apos;m <span className="gradient-text">{personalInfo.firstName}</span>
               </span>
               <span className="block">{personalInfo.lastName}.</span>
             </motion.h1>
@@ -114,7 +114,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
             >
-              {personalInfo.bio} I care about software that's thoughtfully
+              {personalInfo.bio} I care about software that&apos;s thoughtfully
               designed, easy for teams to extend, and reliable enough that
               clients trust it.
             </motion.p>

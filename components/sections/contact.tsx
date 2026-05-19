@@ -81,7 +81,7 @@ export function Contact() {
       eyebrow="Get In Touch"
       title={
         <>
-          Let's build something <span className="gradient-text">together</span>
+          Let&apos;s build something <span className="gradient-text">together</span>
         </>
       }
       description="Have a project in mind, a role to discuss, or just want to say hello? My inbox is open."
@@ -155,7 +155,7 @@ export function Contact() {
               <Field label="Subject" error={errors.subject?.message}>
                 <Input
                   {...register("subject", { required: "Subject is required" })}
-                  placeholder="What's this about?"
+                  placeholder="What&apos;s this about?"
                   aria-invalid={!!errors.subject}
                 />
               </Field>
