@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 30% 97%;
+    --foreground: 235 35% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 235 35% 10%;
+
+    --primary: 249 80% 64%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 6% 92%;
+    --secondary-foreground: 235 30% 18%;
+
+    --muted: 240 6% 94%;
+    --muted-foreground: 235 12% 40%;
+
+    --accent: 240 6% 92%;
+    --accent-foreground: 235 30% 18%;
+
+    --border: 235 15% 88%;
+    --input: 235 15% 88%;
+    --ring: 249 80% 64%;
+
+    --brand-violet: 249 80% 64%;
+    --brand-cyan: 188 92% 42%;
+    --brand-pink: 332 78% 56%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 25% 4%;
+    --foreground: 235 25% 92%;
+
+    --card: 240 25% 7%;
+    --card-foreground: 235 25% 92%;
+
+    --primary: 252 100% 75%;
+    --primary-foreground: 240 25% 4%;
+
+    --secondary: 240 20% 12%;
+    --secondary-foreground: 235 25% 92%;
+
+    --muted: 240 20% 12%;
+    --muted-foreground: 235 12% 65%;
+
+    --accent: 240 20% 12%;
+    --accent-foreground: 235 25% 92%;
+
+    --border: 240 20% 16%;
+    --input: 240 20% 16%;
+    --ring: 252 100% 75%;
+
+    --brand-violet: 252 100% 75%;
+    --brand-cyan: 188 95% 55%;
+    --brand-pink: 332 90% 70%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-full border-2 border-background;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-brand bg-clip-text text-transparent;
+  }
+  .glass {
+    @apply bg-card/60 backdrop-blur-xl border border-border;
+  }
+  .glow {
+    box-shadow:
+      0 20px 60px -20px hsl(var(--primary) / 0.35),
+      0 0 0 1px hsl(var(--border));
+  }
+  .grid-pattern {
+    background-image:
+      linear-gradient(hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(
+      ellipse at center,
+      black 30%,
+      transparent 75%
+    );
+  }
+}
