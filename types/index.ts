@@ -23,12 +23,17 @@ export interface SocialLink {
   icon: "github" | "linkedin" | "mail" | "phone" | "map";
 }
 
+export interface Skill {
+  name: string;
+  proficiency: "expert" | "advanced" | "proficient" | "learning";
+}
+
 export interface SkillCategory {
   id: string;
   title: string;
   description: string;
   icon: LucideIcon;
-  skills: string[];
+  skills: Skill[];
 }
 
 export type ProjectCategory =

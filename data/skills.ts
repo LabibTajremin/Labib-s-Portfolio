@@ -17,14 +17,28 @@ export const skillCategories: SkillCategory[] = [
     title: "Languages",
     description: "Core programming languages I work with daily.",
     icon: Code2,
-    skills: ["C#", "Java", "JavaScript", "TypeScript", "C++", "Python"]
+    skills: [
+      { name: "C#", proficiency: "expert" },
+      { name: "Java", proficiency: "advanced" },
+      { name: "JavaScript", proficiency: "advanced" },
+      { name: "TypeScript", proficiency: "advanced" },
+      { name: "C++", proficiency: "proficient" },
+      { name: "Python", proficiency: "proficient" }
+    ]
   },
   {
     id: "frontend",
     title: "Frontend",
     description: "Building responsive, modern user interfaces.",
     icon: Palette,
-    skills: ["React JS", "Angular", "HTML5", "CSS", "Bootstrap", "Telerik/Kendo"]
+    skills: [
+      { name: "React JS", proficiency: "advanced" },
+      { name: "Angular", proficiency: "advanced" },
+      { name: "HTML5", proficiency: "expert" },
+      { name: "CSS", proficiency: "expert" },
+      { name: "Bootstrap", proficiency: "advanced" },
+      { name: "Telerik/Kendo", proficiency: "proficient" }
+    ]
   },
   {
     id: "backend",
@@ -32,12 +46,12 @@ export const skillCategories: SkillCategory[] = [
     description: "Scalable server-side architecture and APIs.",
     icon: Server,
     skills: [
-      ".NET Core",
-      ".NET Framework",
-      "ASP.NET",
-      "Java Spring",
-      "REST API",
-      "Entity Framework"
+      { name: ".NET Core", proficiency: "expert" },
+      { name: ".NET Framework", proficiency: "expert" },
+      { name: "ASP.NET", proficiency: "advanced" },
+      { name: "Java Spring", proficiency: "proficient" },
+      { name: "REST API", proficiency: "expert" },
+      { name: "Entity Framework", proficiency: "advanced" }
     ]
   },
   {
@@ -45,7 +59,12 @@ export const skillCategories: SkillCategory[] = [
     title: "Databases",
     description: "Designing efficient data models and queries.",
     icon: Database,
-    skills: ["SQL Server", "MySQL", "PostgreSQL", "Entity Framework"]
+    skills: [
+      { name: "SQL Server", proficiency: "expert" },
+      { name: "MySQL", proficiency: "advanced" },
+      { name: "PostgreSQL", proficiency: "advanced" },
+      { name: "Entity Framework", proficiency: "advanced" }
+    ]
   },
   {
     id: "cloud",
@@ -53,11 +72,11 @@ export const skillCategories: SkillCategory[] = [
     description: "Azure-first cloud architecture & CI/CD.",
     icon: Cloud,
     skills: [
-      "Azure Functions",
-      "Blob Storage",
-      "Key Vault",
-      "Azure DevOps",
-      "CI/CD Pipelines"
+      { name: "Azure Functions", proficiency: "advanced" },
+      { name: "Blob Storage", proficiency: "advanced" },
+      { name: "Key Vault", proficiency: "advanced" },
+      { name: "Azure DevOps", proficiency: "expert" },
+      { name: "CI/CD Pipelines", proficiency: "advanced" }
     ]
   },
   {
@@ -65,14 +84,25 @@ export const skillCategories: SkillCategory[] = [
     title: "Architecture & Security",
     description: "Multi-tenant systems with robust auth.",
     icon: ShieldCheck,
-    skills: ["Multi-Tenant", "Microservices", "System Design", "Okta", "OAuth"]
+    skills: [
+      { name: "Multi-Tenant", proficiency: "advanced" },
+      { name: "Microservices", proficiency: "advanced" },
+      { name: "System Design", proficiency: "advanced" },
+      { name: "Okta", proficiency: "proficient" },
+      { name: "OAuth", proficiency: "advanced" }
+    ]
   },
   {
     id: "lowcode",
     title: "Low-Code Platforms",
     description: "Rapid enterprise app delivery.",
     icon: Zap,
-    skills: ["OutSystems", "MuleSoft", "Service Studio", "Integration Studio"]
+    skills: [
+      { name: "OutSystems", proficiency: "expert" },
+      { name: "MuleSoft", proficiency: "advanced" },
+      { name: "Service Studio", proficiency: "expert" },
+      { name: "Integration Studio", proficiency: "advanced" }
+    ]
   },
   {
     id: "tools",
@@ -80,12 +110,12 @@ export const skillCategories: SkillCategory[] = [
     description: "Daily-driver IDEs and workflows.",
     icon: Wrench,
     skills: [
-      "Visual Studio",
-      "VS Code",
-      "Rider",
-      "Git",
-      "Azure DevOps",
-      "Bitbucket"
+      { name: "Visual Studio", proficiency: "expert" },
+      { name: "VS Code", proficiency: "advanced" },
+      { name: "Rider", proficiency: "advanced" },
+      { name: "Git", proficiency: "expert" },
+      { name: "Azure DevOps", proficiency: "expert" },
+      { name: "Bitbucket", proficiency: "proficient" }
     ]
   },
   {
@@ -93,7 +123,13 @@ export const skillCategories: SkillCategory[] = [
     title: "AI / ML & Misc",
     description: "Algorithms, Linux, and beyond.",
     icon: Brain,
-    skills: ["ML Algorithms", "OOP", "DSA", "Linux", "Agile"]
+    skills: [
+      { name: "ML Algorithms", proficiency: "proficient" },
+      { name: "OOP", proficiency: "expert" },
+      { name: "DSA", proficiency: "advanced" },
+      { name: "Linux", proficiency: "proficient" },
+      { name: "Agile", proficiency: "advanced" }
+    ]
   }
 ];
 
