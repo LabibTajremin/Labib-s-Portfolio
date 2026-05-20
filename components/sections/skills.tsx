@@ -31,7 +31,7 @@ export function Skills() {
       description="The tools, frameworks, and platforms I use to build production-grade software."
     >
       {/* Legend */}
-      <div className="mb-8 flex flex-wrap gap-4 sm:gap-6">
+      <div className="mb-6 flex flex-wrap gap-3 sm:gap-4">
         {(
           [
             { level: "Expert", color: "bg-blue-500" },
@@ -40,15 +40,15 @@ export function Skills() {
             { level: "Learning", color: "bg-slate-500" }
           ] as const
         ).map((item) => (
-          <div key={item.level} className="flex items-center gap-2">
-            <div className={`h-2 w-6 rounded ${item.color}`} />
-            <span className="text-sm text-muted-foreground">{item.level}</span>
+          <div key={item.level} className="flex items-center gap-1.5">
+            <div className={`h-2 w-5 rounded ${item.color}`} />
+            <span className="text-xs sm:text-sm text-muted-foreground">{item.level}</span>
           </div>
         ))}
       </div>
 
       {/* Skills Grid */}
-      <div className="grid gap-8 lg:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {skillCategories.map((category, catIndex) => {
           const Icon = category.icon;
           return (
@@ -59,14 +59,14 @@ export function Skills() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ delay: catIndex * 0.05, duration: 0.5 }}
             >
-              <div className="rounded-lg border border-primary/20 bg-card/50 p-6 backdrop-blur-sm hover:border-primary/40 hover:bg-card/80 transition-all duration-300">
+              <div className="rounded-lg border border-primary/20 bg-card/50 p-4 backdrop-blur-sm hover:border-primary/40 hover:bg-card/80 transition-all duration-300">
                 {/* Category Header */}
-                <div className="mb-6 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-brand text-white shadow-[0_4px_12px_-4px_hsl(var(--primary)/0.5)]">
-                    <Icon className="h-5 w-5" />
+                <div className="mb-4 flex items-center gap-2">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-brand text-white shadow-[0_4px_12px_-4px_hsl(var(--primary)/0.5)]">
+                    <Icon className="h-4 w-4" />
                   </div>
                   <div>
-                    <h3 className="font-display text-base font-semibold">
+                    <h3 className="font-display text-sm font-semibold">
                       {category.title}
                     </h3>
                     <p className="text-xs text-muted-foreground">
@@ -76,7 +76,7 @@ export function Skills() {
                 </div>
 
                 {/* Skills with Bars */}
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {category.skills.map((skill, skillIndex) => {
                     const colorClass =
                       proficiencyColors[skill.proficiency];
@@ -94,15 +94,15 @@ export function Skills() {
                         }}
                         className="group"
                       >
-                        <div className="mb-1.5 flex items-center justify-between">
-                          <span className="text-sm font-medium text-foreground">
+                        <div className="mb-1 flex items-center justify-between">
+                          <span className="text-xs font-medium text-foreground">
                             {skill.name}
                           </span>
                           <span className="text-xs text-muted-foreground capitalize">
                             {skill.proficiency}
                           </span>
                         </div>
-                        <div className="h-2 w-full rounded-full bg-secondary/50 overflow-hidden">
+                        <div className="h-1.5 w-full rounded-full bg-secondary/50 overflow-hidden">
                           <motion.div
                             initial={{ width: 0 }}
                             whileInView={{ width: `${width}%` }}
