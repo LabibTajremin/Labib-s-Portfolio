@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, Star, ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/section";
 import { projects, projectFilters } from "@/data/projects";
+import { ProjectVisual } from "@/components/project-visuals";
 import type { Project } from "@/types";
 import { cn } from "@/lib/utils";
 
@@ -198,25 +199,9 @@ function FeaturedProjectCard({
             transition={{ duration: 0.5 }}
             className="relative flex h-80 items-center justify-center overflow-hidden border-r border-white/10 bg-gradient-to-br from-slate-900/80 to-slate-950/50 lg:h-96"
           >
-            {/* Premium placeholder with grid */}
-            <div
-              className="absolute inset-0 opacity-30"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
-                backgroundSize: "50px 50px"
-              }}
-            />
-
-            {/* Browser mockup frame */}
-            <div className="relative z-10 flex h-full w-full items-center justify-center">
-              <motion.div
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.4 }}
-                className="flex items-center justify-center text-8xl drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
-              >
-                {project.emoji}
-              </motion.div>
+            {/* Premium animated visual */}
+            <div className="absolute inset-0">
+              <ProjectVisual projectId={project.id} />
             </div>
 
             {/* Overlay gradient */}
@@ -367,24 +352,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <div className="relative z-10 flex h-full flex-col">
           {/* Project Image/Visual */}
           <div className="relative flex h-48 items-center justify-center overflow-hidden border-b border-white/10 bg-gradient-to-br from-slate-900/60 to-slate-950/40">
-            {/* Grid pattern */}
-            <div
-              className="absolute inset-0 opacity-25"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
-                backgroundSize: "40px 40px"
-              }}
-            />
-
-            {/* Emoji with glow */}
-            <motion.div
-              whileHover={{ scale: 1.25, rotate: 8 }}
-              transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
-              className="relative text-5xl drop-shadow-[0_12px_20px_rgba(0,0,0,0.4)] filter brightness-110"
-            >
-              {project.emoji}
-            </motion.div>
+            {/* Premium animated visual */}
+            <ProjectVisual projectId={project.id} />
 
             {/* Status badge */}
             <StatusBadge status={project.status} />
