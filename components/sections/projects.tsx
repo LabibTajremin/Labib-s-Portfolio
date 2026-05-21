@@ -473,17 +473,8 @@ function StatusBadge({ status }: { status: Project["status"] }) {
     </motion.span>
   );
 }
-              >
-                <ExternalLink className="h-4 w-4" /> Learn More
-              </motion.a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
 
+// Status Badge Component
 function StatusBadge({ status }: { status: Project["status"] }) {
   const map: Record<
     Project["status"],
