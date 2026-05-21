@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { Section } from "@/components/layout/section";
 import { skillCategories } from "@/data/skills";
 
-// Premium muted color palette inspired by Vercel, Linear, Framer
+// Premium vibrant color palette - More lively and eye-catching
 const proficiencyColors = {
-  expert: "from-slate-600 to-slate-700",
-  advanced: "from-slate-500 to-slate-600",
-  proficient: "from-slate-400 to-slate-500",
-  learning: "from-slate-300 to-slate-400"
+  expert: "from-blue-500 via-blue-600 to-blue-700",
+  advanced: "from-cyan-400 via-cyan-500 to-blue-600",
+  proficient: "from-amber-400 via-yellow-500 to-amber-600",
+  learning: "from-purple-400 via-indigo-500 to-purple-600"
 };
 
 const proficiencyWidths = {
@@ -64,14 +64,14 @@ export function Skills() {
       >
         {(
           [
-            { level: "Expert", gradient: "from-slate-600 to-slate-700" },
-            { level: "Advanced", gradient: "from-slate-500 to-slate-600" },
-            { level: "Proficient", gradient: "from-slate-400 to-slate-500" },
-            { level: "Learning", gradient: "from-slate-300 to-slate-400" }
+            { level: "Expert", gradient: "from-blue-500 to-blue-700" },
+            { level: "Advanced", gradient: "from-cyan-400 to-blue-600" },
+            { level: "Proficient", gradient: "from-amber-400 to-amber-600" },
+            { level: "Learning", gradient: "from-purple-400 to-purple-600" }
           ] as const
         ).map((item) => (
           <div key={item.level} className="flex items-center gap-2.5">
-            <div className={`h-2.5 w-8 rounded-full bg-gradient-to-r ${item.gradient}`} />
+            <div className={`h-2.5 w-8 rounded-full bg-gradient-to-r ${item.gradient} shadow-[0_0_12px_rgba(var(--color),0.4)]`} />
             <span className="text-sm font-medium text-muted-foreground">{item.level}</span>
           </div>
         ))}
@@ -103,8 +103,8 @@ export function Skills() {
                 <div className="relative z-10">
                   {/* Category Header with Icon */}
                   <div className="mb-6 flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-slate-500/30 to-slate-600/30 backdrop-blur-sm transition-all duration-300 group-hover:from-slate-400/40 group-hover:to-slate-500/40">
-                      <Icon className="h-5 w-5 text-slate-200" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/40 via-cyan-500/30 to-blue-600/40 backdrop-blur-sm transition-all duration-300 group-hover:from-blue-400/50 group-hover:via-cyan-400/40 group-hover:to-blue-500/50 shadow-[0_0_16px_rgba(59,130,246,0.3)] group-hover:shadow-[0_0_24px_rgba(59,130,246,0.5)]">
+                      <Icon className="h-5 w-5 text-blue-100 drop-shadow-[0_0_8px_rgba(59,130,246,0.4)]" />
                     </div>
                     <div>
                       <h3 className="font-display text-sm font-semibold text-foreground">
@@ -145,7 +145,7 @@ export function Skills() {
                           </div>
 
                           {/* Premium Progress Bar */}
-                          <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+                          <div className="relative h-2 w-full overflow-hidden rounded-full bg-white/8 shadow-inner">
                             <motion.div
                               initial={{ width: 0, opacity: 0 }}
                               whileInView={{ width: `${width}%`, opacity: 1 }}
@@ -155,7 +155,7 @@ export function Skills() {
                                 duration: 0.7,
                                 ease: "easeOut"
                               }}
-                              className={`h-full rounded-full bg-gradient-to-r ${colorClass} shadow-[0_0_12px_rgba(100,116,139,0.4)] transition-all duration-300 group-hover/skill:shadow-[0_0_16px_rgba(100,116,139,0.6)]`}
+                              className={`h-full rounded-full bg-gradient-to-r ${colorClass} shadow-[0_0_20px_currentColor] transition-all duration-300 group-hover/skill:shadow-[0_0_28px_currentColor,0_0_40px_rgba(255,255,255,0.2)]`}
                             />
                           </div>
                         </motion.div>
