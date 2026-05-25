@@ -67,7 +67,7 @@ export function HRSolutionPreview() {
         className="bg-slate-800/40 backdrop-blur-sm border border-white/10 rounded-lg overflow-hidden flex-1"
       >
         <div className="px-4 py-3 border-b border-white/10 bg-slate-900/50">
-          <h3 className="text-white font-semibold text-sm">Today's Attendance</h3>
+          <h3 className="text-white font-semibold text-sm">Daily Attendance</h3>
         </div>
         <div className="p-4 space-y-3">
           {["Sarah Johnson", "Mike Chen", "Emma Davis", "Alex Rodriguez"].map((name, i) => (
