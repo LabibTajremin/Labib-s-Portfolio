@@ -1,0 +1,1311 @@
+"use client";
+
+import { motion } from "framer-motion";
+import React from "react";
+
+// ============================================================================
+// PROJECT 1: HR SOLUTION PLATFORM
+// ============================================================================
+export function HRSolutionPreview() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.3 },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
+      {/* Header */}
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold text-white mb-2">HR Dashboard</h2>
+        <p className="text-slate-400 text-sm">Multi-Tenant Enterprise HR Management</p>
+      </div>
+
+      {/* KPI Cards */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
+      >
+        {[
+          { label: "Total Employees", value: "245", color: "from-blue-600 to-blue-400" },
+          { label: "Attendance Rate", value: "94.2%", color: "from-green-600 to-green-400" },
+          { label: "Pending Leaves", value: "12", color: "from-amber-600 to-amber-400" },
+          { label: "Payroll Ready", value: "✓", color: "from-purple-600 to-purple-400" },
+        ].map((card, i) => (
+          <motion.div
+            key={i}
+            variants={cardVariants}
+            className={`bg-gradient-to-br ${card.color} bg-opacity-20 backdrop-blur-sm border border-white/10 rounded-lg p-4`}
+          >
+            <p className="text-slate-300 text-xs mb-2">{card.label}</p>
+            <motion.p
+              className="text-2xl font-bold text-white"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 + i * 0.1 }}
+            >
+              {card.value}
+            </motion.p>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Attendance Table */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1 }}
+        className="bg-slate-800/40 backdrop-blur-sm border border-white/10 rounded-lg overflow-hidden flex-1"
+      >
+        <div className="px-4 py-3 border-b border-white/10 bg-slate-900/50">
+          <h3 className="text-white font-semibold text-sm">Today's Attendance</h3>
+        </div>
+        <div className="p-4 space-y-3">
+          {["Sarah Johnson", "Mike Chen", "Emma Davis", "Alex Rodriguez"].map((name, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.2 + i * 0.1 }}
+              className="flex items-center justify-between py-2 px-3 bg-slate-900/50 rounded border border-white/5"
+            >
+              <span className="text-slate-300 text-sm">{name}</span>
+              <motion.span
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ delay: 1.5 + i * 0.1, duration: 0.5 }}
+                className="text-green-400 text-sm font-semibold"
+              >
+                ✓ Check-in
+              </motion.span>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Leave Request Animation */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="mt-4 p-3 bg-amber-500/10 border border-amber-500/30 rounded text-xs text-amber-200"
+      >
+        Leave Request: <span className="font-semibold">Pending Manager Approval</span>
+      </motion.div>
+    </div>
+  );
+}
+
+// ============================================================================
+// PROJECT 2: MULTI-TENANT DATA SYNC SYSTEM
+// ============================================================================
+export function MultiTenantSyncPreview() {
+  const tenants = ["Acme Corp", "TechStart Inc", "Global Solutions"];
+
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-white mb-1">Sync Dashboard</h2>
+        <p className="text-slate-400 text-sm">Multi-Tenant Data Synchronization</p>
+      </div>
+
+      {/* Tenant List */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="space-y-3 mb-6"
+      >
+        {tenants.map((tenant, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5 + i * 0.15 }}
+            className="bg-slate-800/40 border border-indigo-500/30 rounded-lg p-4 cursor-pointer hover:bg-slate-800/60 transition-all"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-white font-semibold text-sm">{tenant}</span>
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ delay: 1 + i * 0.2, duration: 2, repeat: Infinity }}
+                className="w-2 h-2 rounded-full bg-cyan-400"
+              />
+            </div>
+            <p className="text-slate-400 text-xs mt-2">Status: Syncing...</p>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Sync Pipeline */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="bg-slate-800/40 border border-white/10 rounded-lg p-4 flex-1 flex flex-col"
+      >
+        <h3 className="text-white font-semibold text-sm mb-4">Data Flow Pipeline</h3>
+        <div className="flex items-center justify-between flex-1 min-h-20">
+          {["API Source", "Sync Engine", "Tenant DB"].map((stage, i) => (
+            <React.Fragment key={i}>
+              <div className="bg-slate-900/50 border border-indigo-500/50 rounded px-4 py-2">
+                <p className="text-slate-300 text-xs font-semibold">{stage}</p>
+              </div>
+              {i < 2 && (
+                <motion.div
+                  animate={{ x: [0, 8, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.3 }}
+                  className="flex-1 flex justify-center"
+                >
+                  <div className="w-8 h-0.5 bg-gradient-to-r from-cyan-500 to-cyan-400" />
+                </motion.div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Activity Log */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="mt-4 bg-slate-900/50 border border-white/10 rounded p-3 text-xs text-slate-300 max-h-24 overflow-hidden"
+      >
+        <p className="text-green-400 mb-1">✓ Acme Corp: 1,240 records synced</p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+          className="text-cyan-400 mb-1"
+        >
+          ⟳ TechStart Inc: Syncing... 847/1,100
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.5 }}
+          className="text-slate-400"
+        >
+          ⏳ Global Solutions: Queued
+        </motion.p>
+      </motion.div>
+    </div>
+  );
+}
+
+// ============================================================================
+// PROJECT 3: DOCUMENT SHARING PORTAL
+// ============================================================================
+export function DocumentPortalPreview() {
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-white mb-1">Documents</h2>
+        <p className="text-slate-400 text-sm">Secure Document Sharing Portal</p>
+      </div>
+
+      {/* Folder Navigation */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="flex gap-2 mb-6 text-sm"
+      >
+        {["Home", "Contracts", "Reports"].map((folder, i) => (
+          <motion.button
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 + i * 0.1 }}
+            className={`px-3 py-1.5 rounded ${
+              i === 1
+                ? "bg-blue-600/40 border border-blue-500/50 text-blue-300"
+                : "bg-slate-800/40 border border-white/10 text-slate-300"
+            }`}
+          >
+            {folder}
+          </motion.button>
+        ))}
+      </motion.div>
+
+      {/* Document Grid */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6 }}
+        className="grid grid-cols-2 gap-3 flex-1"
+      >
+        {[
+          { name: "Contract_2024.pdf", type: "PDF", color: "from-red-600 to-red-400", size: "2.4 MB" },
+          { name: "Budget_Report.xlsx", type: "XLS", color: "from-green-600 to-green-400", size: "1.8 MB" },
+          { name: "Proposal.docx", type: "DOC", color: "from-blue-600 to-blue-400", size: "856 KB" },
+          { name: "Audit_2024.pdf", type: "PDF", color: "from-red-600 to-red-400", size: "3.2 MB" },
+        ].map((doc, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.8 + i * 0.1 }}
+            className="bg-slate-800/40 border border-white/10 rounded-lg p-4 cursor-pointer hover:border-white/30 transition-all"
+          >
+            <motion.div
+              className={`bg-gradient-to-br ${doc.color} h-10 rounded mb-3 flex items-center justify-center text-white font-bold text-xs`}
+              whileHover={{ scale: 1.05 }}
+            >
+              {doc.type}
+            </motion.div>
+            <p className="text-slate-300 text-xs font-semibold truncate">{doc.name}</p>
+            <p className="text-slate-500 text-xs mt-1">{doc.size}</p>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Sharing Info */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6 }}
+        className="mt-4 p-3 bg-blue-500/10 border border-blue-500/30 rounded text-xs text-blue-200"
+      >
+        🔒 Shared with 3 users • Last modified: Today at 2:45 PM
+      </motion.div>
+    </div>
+  );
+}
+
+// ============================================================================
+// PROJECT 4: CLINICAL TRIAL MANAGEMENT
+// ============================================================================
+export function ClinicalTrialPreview() {
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-white mb-1">Trial Management</h2>
+        <p className="text-slate-400 text-sm">Clinical Study Tracking</p>
+      </div>
+
+      {/* Phase Timeline */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="mb-6 bg-slate-800/40 border border-white/10 rounded-lg p-4"
+      >
+        <h3 className="text-white font-semibold text-sm mb-4">Study Phase Progress</h3>
+        <div className="flex items-center justify-between gap-2">
+          {["Screening", "Enrollment", "Treatment", "Follow-up", "Complete"].map((phase, i) => (
+            <motion.div key={i} className="flex flex-col items-center flex-1">
+              <motion.div
+                animate={{ scale: [1, 1.15, 1] }}
+                transition={{ delay: 0.6 + i * 0.15, duration: 1 }}
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold mb-2 ${
+                  i <= 2
+                    ? "bg-sky-500/40 border border-sky-500 text-sky-300"
+                    : "bg-slate-700/40 border border-white/20 text-slate-400"
+                }`}
+              >
+                {i + 1}
+              </motion.div>
+              <p className="text-xs text-slate-400 text-center">{phase}</p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Participants Stats */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+        className="grid grid-cols-3 gap-3 mb-6"
+      >
+        {[
+          { label: "Enrolled", value: "847", color: "sky" },
+          { label: "Active", value: "756", color: "green" },
+          { label: "Completed", value: "89", color: "purple" },
+        ].map((stat, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 + i * 0.15 }}
+            className={`bg-${stat.color}-500/10 border border-${stat.color}-500/30 rounded p-3 text-center`}
+          >
+            <p className={`text-${stat.color}-300 text-xs`}>{stat.label}</p>
+            <motion.p
+              className={`text-lg font-bold text-${stat.color}-400`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.3 + i * 0.1 }}
+            >
+              {stat.value}
+            </motion.p>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Adverse Events */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.3 }}
+        className="bg-slate-800/40 border border-white/10 rounded-lg p-4 flex-1"
+      >
+        <h3 className="text-white font-semibold text-sm mb-3">Adverse Events</h3>
+        <div className="space-y-2">
+          {[
+            { event: "Mild Nausea", count: 23, color: "blue" },
+            { event: "Mild Headache", count: 18, color: "yellow" },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.5 + i * 0.15 }}
+              className="flex items-center justify-between text-xs"
+            >
+              <span className="text-slate-300">{item.event}</span>
+              <motion.div
+                className={`px-2 py-1 rounded bg-${item.color}-500/20 border border-${item.color}-500/40 text-${item.color}-300`}
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ delay: 1.8 + i * 0.2, duration: 0.5 }}
+              >
+                {item.count} cases
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+// ============================================================================
+// PROJECT 5: LEASE MANAGEMENT SYSTEM
+// ============================================================================
+export function LeaseManagementPreview() {
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-white mb-1">Lease Origination</h2>
+        <p className="text-slate-400 text-sm">OutSystems Lease Management</p>
+      </div>
+
+      {/* Multi-Step Form Progress */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="mb-6 flex gap-2 justify-between"
+      >
+        {["Property", "Tenant", "Terms", "Review", "Submit"].map((step, i) => (
+          <motion.div key={i} className="flex-1">
+            <motion.div
+              className={`h-1 rounded-full mb-2 ${
+                i <= 2 ? "bg-purple-500" : "bg-slate-700"
+              }`}
+              initial={{ width: "0%" }}
+              animate={{ width: i <= 2 ? "100%" : "0%" }}
+              transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
+            />
+            <p className="text-xs text-slate-400 text-center">{step}</p>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Active Form Step */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.8 }}
+        className="bg-slate-800/40 border border-white/10 rounded-lg p-4 flex-1 flex flex-col"
+      >
+        <h3 className="text-white font-semibold text-sm mb-4">Property Information</h3>
+        <div className="space-y-3">
+          {[
+            { label: "Property Address", value: "123 Commercial Ave, Suite 500" },
+            { label: "Property Type", value: "Office Space" },
+            { label: "Square Footage", value: "5,500 sq ft" },
+            { label: "Annual Rent", value: "$275,000" },
+          ].map((field, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 + i * 0.1 }}
+              className="bg-slate-900/50 rounded p-3 border border-white/5"
+            >
+              <p className="text-slate-400 text-xs mb-1">{field.label}</p>
+              <p className="text-slate-200 text-sm font-semibold">{field.value}</p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Next Button */}
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6 }}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="mt-4 w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-semibold py-2 rounded-lg transition-all"
+      >
+        Continue to Next Step →
+      </motion.button>
+    </div>
+  );
+}
+
+// ============================================================================
+// PROJECT 6: WINDOWS SERVICE
+// ============================================================================
+export function WindowsServicePreview() {
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden font-mono">
+      <div className="mb-4">
+        <h2 className="text-xl font-bold text-white mb-1">File Processing Service</h2>
+        <p className="text-slate-400 text-xs">.NET Core Windows Service Monitor</p>
+      </div>
+
+      {/* Service Status */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="bg-slate-800/40 border border-white/10 rounded p-3 mb-4"
+      >
+        <div className="flex items-center justify-between text-xs">
+          <span className="text-slate-400">Service Status:</span>
+          <motion.span
+            animate={{ opacity: [1, 0.6, 1] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="text-green-400 font-bold"
+          >
+            ● Running
+          </motion.span>
+        </div>
+        <div className="flex items-center justify-between text-xs mt-2">
+          <span className="text-slate-400">Uptime:</span>
+          <span className="text-slate-300">14h 23m 45s</span>
+        </div>
+      </motion.div>
+
+      {/* Activity Log */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6 }}
+        className="bg-slate-900/80 border border-green-500/30 rounded p-3 flex-1 overflow-hidden text-xs text-green-400 flex flex-col"
+      >
+        <div className="space-y-1">
+          <p>[14:45:23] ✓ Connected to FTP server</p>
+          <p>[14:45:24] → Scanning for new files...</p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            [14:45:25] ✓ Found 12 new files
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
+          >
+            [14:45:26] → Downloading: Report_Q1_2024.xml (2.4 MB)
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2 }}
+            className="text-yellow-400"
+          >
+            [14:45:29] ⟳ Processing XML...
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.5 }}
+          >
+            [14:45:31] ✓ Parsed 1,240 records
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 3 }}
+          >
+            [14:45:33] ✓ Database sync completed
+          </motion.p>
+        </div>
+      </motion.div>
+
+      {/* Statistics */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 3.2 }}
+        className="mt-4 grid grid-cols-3 gap-2 text-xs"
+      >
+        {[
+          { label: "Files Processed", value: "2,847" },
+          { label: "Sync Success Rate", value: "99.8%" },
+          { label: "Next Run", value: "15:00" },
+        ].map((stat, i) => (
+          <div key={i} className="bg-slate-800/40 border border-white/10 rounded p-2 text-center">
+            <p className="text-slate-400">{stat.label}</p>
+            <p className="text-green-400 font-bold">{stat.value}</p>
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+// ============================================================================
+// PROJECT 7: STRUCTURAL DESIGN AUTOMATION
+// ============================================================================
+export function StructuralDesignPreview() {
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-white mb-1">Beam Calculator</h2>
+        <p className="text-slate-400 text-sm">Structural Design Automation</p>
+      </div>
+
+      {/* Input Form */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="bg-slate-800/40 border border-white/10 rounded-lg p-4 mb-4"
+      >
+        <h3 className="text-white font-semibold text-sm mb-3">Input Parameters</h3>
+        <div className="space-y-2">
+          {[
+            { label: "Span Length (m)", value: "6.5", valid: true },
+            { label: "Live Load (kN/m)", value: "12.5", valid: true },
+            { label: "Material", value: "Steel Grade 250", valid: true },
+          ].map((param, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 + i * 0.1 }}
+              className="flex items-center justify-between bg-slate-900/50 rounded p-2 border border-white/5"
+            >
+              <span className="text-slate-300 text-xs">{param.label}</span>
+              <div className="flex items-center gap-2">
+                <span className="text-slate-200 text-sm font-semibold">{param.value}</span>
+                {param.valid && (
+                  <motion.span
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ delay: 0.8 + i * 0.15, duration: 0.5 }}
+                    className="text-green-400 text-sm"
+                  >
+                    ✓
+                  </motion.span>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Results */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1 }}
+        className="bg-slate-800/40 border border-cyan-500/30 rounded-lg p-4 flex-1"
+      >
+        <h3 className="text-white font-semibold text-sm mb-4">Calculated Results</h3>
+        <div className="space-y-3">
+          {[
+            { label: "Bending Moment (kNm)", value: 63.28, unit: "kNm" },
+            { label: "Shear Force (kN)", value: 40.63, unit: "kN" },
+            { label: "Deflection (mm)", value: 12.4, unit: "mm" },
+          ].map((result, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.3 + i * 0.15 }}
+              className="bg-slate-900/50 rounded p-3 border border-cyan-500/30"
+            >
+              <p className="text-slate-400 text-xs mb-1">{result.label}</p>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5 + i * 0.15 }}
+              >
+                <p className="text-cyan-300 text-lg font-bold">
+                  {result.value} <span className="text-xs text-cyan-400">{result.unit}</span>
+                </p>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Export Button */}
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="mt-4 w-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 rounded-lg transition-all"
+      >
+        Export to Excel
+      </motion.button>
+    </div>
+  );
+}
+
+// ============================================================================
+// PROJECT 8: GETLIFT - RIDE-SHARING
+// ============================================================================
+export function GetLiftPreview() {
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-white mb-1">GetLift</h2>
+        <p className="text-slate-400 text-sm">Ride-Sharing Platform</p>
+      </div>
+
+      {/* Map View */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="relative bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 rounded-lg flex-1 mb-4 overflow-hidden flex items-center justify-center"
+      >
+        {/* Grid Pattern Map */}
+        <div className="absolute inset-0 opacity-30" style={{
+          backgroundImage: "linear-gradient(rgba(148,163,184,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.1) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }} />
+
+        {/* Pickup Pin */}
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.6 }}
+          className="absolute w-8 h-8 bg-green-500 rounded-full border-2 border-green-300 flex items-center justify-center"
+          style={{ left: "30%", top: "40%" }}
+        >
+          <div className="w-2 h-2 bg-white rounded-full" />
+        </motion.div>
+
+        {/* Destination Pin */}
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.8 }}
+          className="absolute w-8 h-8 bg-red-500 rounded-full border-2 border-red-300 flex items-center justify-center"
+          style={{ right: "25%", top: "30%" }}
+        >
+          <div className="w-2 h-2 bg-white rounded-full" />
+        </motion.div>
+
+        {/* Route Line */}
+        <motion.div
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ delay: 1, duration: 1.5 }}
+          className="absolute"
+          style={{
+            width: "100%",
+            height: "100%",
+            left: 0,
+            top: 0,
+          }}
+        >
+          <svg width="100%" height="100%" className="absolute">
+            <motion.line
+              x1="30%"
+              y1="40%"
+              x2="75%"
+              y2="30%"
+              stroke="rgba(59, 130, 246, 0.6)"
+              strokeWidth="2"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ delay: 1, duration: 1.5 }}
+            />
+          </svg>
+        </motion.div>
+
+        {/* Moving Car */}
+        <motion.div
+          animate={{ left: ["30%", "75%"], top: ["40%", "30%"] }}
+          transition={{ delay: 1.5, duration: 2 }}
+          className="absolute w-6 h-6 bg-yellow-500 rounded-sm flex items-center justify-center text-white text-xs font-bold"
+        >
+          🚗
+        </motion.div>
+      </motion.div>
+
+      {/* Bottom Sheet */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="bg-slate-800/60 border border-white/10 rounded-lg p-4"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <p className="text-white font-semibold">Driver Arriving</p>
+            <motion.p
+              className="text-amber-400 text-sm font-bold"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2 }}
+            >
+              4:32 minutes
+            </motion.p>
+          </div>
+          <div className="text-right">
+            <p className="text-slate-400 text-xs">Fare</p>
+            <p className="text-white font-semibold">৳285</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3 p-2 bg-slate-900/50 rounded border border-white/5">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600" />
+          <div className="flex-1">
+            <p className="text-white text-sm font-semibold">Karim Ahmed</p>
+            <p className="text-slate-400 text-xs">Toyota Corolla • DH 2024</p>
+          </div>
+          <p className="text-yellow-400 text-sm">★ 4.9</p>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+// ============================================================================
+// PROJECT 9: INTELLIGENT CHESS BOARD
+// ============================================================================
+export function ChessBoardPreview() {
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
+      <div className="mb-4">
+        <h2 className="text-2xl font-bold text-white mb-1">Chess Board</h2>
+        <p className="text-slate-400 text-sm">IoT-Enabled AI Chess System</p>
+      </div>
+
+      <div className="flex gap-4 flex-1">
+        {/* Physical Board */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="flex-1 bg-amber-950/40 border border-amber-700/50 rounded-lg p-4 flex items-center justify-center"
+        >
+          <div className="grid grid-cols-8 gap-0 border-2 border-amber-700">
+            {Array.from({ length: 64 }).map((_, i) => {
+              const row = Math.floor(i / 8);
+              const col = i % 8;
+              const isLight = (row + col) % 2 === 0;
+              return (
+                <motion.div
+                  key={i}
+                  className={`w-6 h-6 ${isLight ? "bg-amber-100/20" : "bg-amber-900/40"} border border-amber-700/30`}
+                  animate={{
+                    opacity: isLight ? [0.2, 0.4, 0.2] : [0.4, 0.6, 0.4],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: (i % 8) * 0.03,
+                  }}
+                />
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* Control Panel */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.6 }}
+          className="w-40 bg-slate-800/40 border border-white/10 rounded-lg p-4 flex flex-col"
+        >
+          <h3 className="text-white font-semibold text-sm mb-4">AI Analysis</h3>
+
+          <div className="mb-4">
+            <p className="text-slate-400 text-xs mb-2">Thinking...</p>
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1, repeat: Infinity }}
+              className="text-2xl"
+            >
+              ♚
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
+            className="bg-slate-900/50 rounded p-2 mb-4 text-center"
+          >
+            <p className="text-slate-400 text-xs">Best Move</p>
+            <p className="text-cyan-300 font-bold">Nf3-e5</p>
+          </motion.div>
+
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2 }}
+            className="w-full bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold py-2 rounded transition-all"
+          >
+            Execute Move
+          </motion.button>
+
+          <div className="mt-4 pt-4 border-t border-white/10">
+            <p className="text-slate-400 text-xs mb-2">Nodes Analyzed</p>
+            <motion.p
+              className="text-green-400 font-bold text-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.5 }}
+            >
+              2.4M
+            </motion.p>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
+// PROJECT 10: IOT SMART VENDING MACHINE
+// ============================================================================
+export function VendingMachinePreview() {
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-white mb-1">Smart Vending</h2>
+        <p className="text-slate-400 text-sm">IoT Connected Vending System</p>
+      </div>
+
+      <div className="flex gap-4 flex-1">
+        {/* Machine Display */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="flex-1 bg-gradient-to-b from-slate-800 to-slate-900 border-2 border-cyan-500/30 rounded-lg p-4 flex flex-col"
+        >
+          <div className="text-center mb-4">
+            <motion.p
+              className="text-cyan-300 font-semibold text-sm"
+              animate={{ opacity: [1, 0.6, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              RFID Ready
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2 flex-1">
+            {[
+              { name: "Coffee", price: "৳30", stock: 5 },
+              { name: "Water", price: "৳20", stock: 12 },
+              { name: "Chips", price: "৳35", stock: 8 },
+              { name: "Candy", price: "৳25", stock: 0 },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5 + i * 0.1 }}
+                className={`bg-slate-700/50 rounded p-2 text-center border ${
+                  item.stock > 0 ? "border-white/10" : "border-red-500/50"
+                }`}
+              >
+                <p className="text-white text-xs font-semibold">{item.name}</p>
+                <p className="text-slate-400 text-xs">{item.price}</p>
+                <p className={`text-xs mt-1 ${item.stock > 0 ? "text-green-400" : "text-red-400"}`}>
+                  {item.stock > 0 ? `${item.stock} left` : "Out"}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Monitoring Dashboard */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.6 }}
+          className="w-48 bg-slate-800/40 border border-white/10 rounded-lg p-4 flex flex-col"
+        >
+          <h3 className="text-white font-semibold text-sm mb-4">Monitor</h3>
+
+          <div className="space-y-3 flex-1">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="bg-slate-900/50 rounded p-2"
+            >
+              <p className="text-slate-400 text-xs">Status</p>
+              <motion.p
+                className="text-green-400 font-bold text-sm"
+                animate={{ opacity: [1, 0.6, 1] }}
+                transition={{ duration: 1, repeat: Infinity }}
+              >
+                ● Online
+              </motion.p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="bg-slate-900/50 rounded p-2"
+            >
+              <p className="text-slate-400 text-xs">Today Sales</p>
+              <p className="text-cyan-300 font-bold text-sm">৳1,250</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2 }}
+              className="bg-slate-900/50 rounded p-2"
+            >
+              <p className="text-slate-400 text-xs">WiFi Signal</p>
+              <p className="text-green-400 font-bold text-sm">▓▓▓▓░ 80%</p>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
+            className="mt-4 pt-4 border-t border-white/10 text-center"
+          >
+            <p className="text-slate-400 text-xs">Last Sync</p>
+            <p className="text-green-400 text-xs">2 min ago</p>
+          </motion.div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
+// PROJECT 11: CATCH IT GAME
+// ============================================================================
+export function CatchItPreview() {
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-purple-950/20 to-slate-950 p-6 flex flex-col overflow-hidden">
+      <div className="mb-4">
+        <h2 className="text-2xl font-bold text-white mb-1">Catch It</h2>
+        <p className="text-slate-400 text-sm">Dynamic Game Engine</p>
+      </div>
+
+      {/* Game Area */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="relative bg-gradient-to-b from-slate-800 to-slate-900 border border-white/10 rounded-lg flex-1 overflow-hidden mb-4 flex items-center justify-center"
+      >
+        {/* Score Display */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="absolute top-4 right-4 bg-amber-500/20 border border-amber-500/50 rounded px-4 py-2 z-10"
+        >
+          <p className="text-amber-300 text-sm">Score</p>
+          <motion.p
+            className="text-amber-400 text-2xl font-bold"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            1,250
+          </motion.p>
+        </motion.div>
+
+        {/* Falling Objects */}
+        {[0, 1, 2, 3].map((i) => (
+          <motion.div
+            key={i}
+            animate={{ y: [-40, 360] }}
+            transition={{
+              duration: 2 + i * 0.3,
+              repeat: Infinity,
+              delay: i * 0.25,
+              ease: "linear",
+            }}
+            className="absolute w-6 h-6 bg-gradient-to-b from-amber-300 to-orange-500 rounded-sm flex items-center justify-center text-white text-xs font-bold"
+            style={{
+              left: `${15 + (i % 4) * 25}%`,
+              boxShadow: "0 0 12px rgba(251, 191, 36, 0.6)",
+            }}
+          >
+            ○
+          </motion.div>
+        ))}
+
+        {/* Player Area */}
+        <motion.div
+          animate={{ x: [-60, 60, -60] }}
+          transition={{ duration: 4, repeat: Infinity }}
+          className="absolute bottom-8 w-12 h-6 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center text-white font-bold"
+        >
+          ▢
+        </motion.div>
+      </motion.div>
+
+      {/* Game Stats */}
+      <div className="grid grid-cols-3 gap-2">
+        {[
+          { label: "Caught", value: "42" },
+          { label: "Missed", value: "5" },
+          { label: "Accuracy", value: "89%" },
+        ].map((stat, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 + i * 0.1 }}
+            className="bg-slate-800/40 border border-white/10 rounded p-2 text-center"
+          >
+            <p className="text-slate-400 text-xs">{stat.label}</p>
+            <p className="text-white font-bold text-sm">{stat.value}</p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
+// PROJECT 12: STORE MANAGEMENT SYSTEM
+// ============================================================================
+export function StoreManagementPreview() {
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-white mb-1">Inventory Manager</h2>
+        <p className="text-slate-400 text-sm">Store Management System</p>
+      </div>
+
+      {/* Summary Cards */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="grid grid-cols-3 gap-3 mb-6"
+      >
+        {[
+          { label: "Total Products", value: "1,240", color: "blue" },
+          { label: "Low Stock", value: "34", color: "red" },
+          { label: "Total Value", value: "৳2.4M", color: "green" },
+        ].map((card, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 + i * 0.1 }}
+            className={`bg-${card.color}-500/10 border border-${card.color}-500/30 rounded-lg p-3`}
+          >
+            <p className={`text-${card.color}-300 text-xs`}>{card.label}</p>
+            <motion.p
+              className={`text-${card.color}-400 text-lg font-bold mt-1`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 + i * 0.1 }}
+            >
+              {card.value}
+            </motion.p>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Inventory Table */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+        className="bg-slate-800/40 border border-white/10 rounded-lg overflow-hidden flex-1 flex flex-col"
+      >
+        <div className="bg-slate-900/50 px-4 py-3 border-b border-white/10">
+          <h3 className="text-white font-semibold text-sm">Stock Levels by Category</h3>
+        </div>
+
+        <div className="overflow-y-auto flex-1">
+          {[
+            { category: "Electronics", items: 234, value: "₳892K", status: "Optimal" },
+            { category: "Clothing", items: 456, value: "₳654K", status: "Optimal" },
+            { category: "Home & Garden", items: 89, value: "₳234K", status: "Low Stock" },
+            { category: "Books", items: 34, value: "₳45K", status: "Critical" },
+          ].map((row, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1 + i * 0.1 }}
+              className={`px-4 py-3 border-b border-white/5 flex items-center justify-between ${
+                i % 2 ? "bg-slate-900/30" : ""
+              }`}
+            >
+              <div className="flex-1">
+                <p className="text-slate-200 font-semibold text-sm">{row.category}</p>
+                <p className="text-slate-400 text-xs">{row.items} items</p>
+              </div>
+              <div className="text-right">
+                <p className="text-slate-300 text-sm">{row.value}</p>
+                <motion.p
+                  className={`text-xs font-semibold ${
+                    row.status === "Optimal"
+                      ? "text-green-400"
+                      : row.status === "Low Stock"
+                        ? "text-yellow-400"
+                        : "text-red-400"
+                  }`}
+                  animate={{ opacity: [1, 0.6, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
+                >
+                  {row.status}
+                </motion.p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+// ============================================================================
+// PROJECT 13: DONATION PLATFORM
+// ============================================================================
+export function DonationPlatformPreview() {
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-rose-950/20 to-slate-950 p-6 flex flex-col overflow-hidden">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-white mb-1">Potho Shishur Alo</h2>
+        <p className="text-slate-400 text-sm">Donation Platform for Street Children</p>
+      </div>
+
+      {/* Impact Counters */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="grid grid-cols-3 gap-3 mb-6"
+      >
+        {[
+          { label: "Children Helped", value: "1,250", color: "rose" },
+          { label: "Funds Raised", value: "৳8.4M", color: "orange" },
+          { label: "Active Campaigns", value: "42", color: "pink" },
+        ].map((stat, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5 + i * 0.1 }}
+            className={`bg-${stat.color}-500/10 border border-${stat.color}-500/30 rounded-lg p-4 text-center`}
+          >
+            <motion.p
+              className={`text-${stat.color}-400 text-2xl font-bold mb-1`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 + i * 0.1 }}
+            >
+              {stat.value}
+            </motion.p>
+            <p className={`text-${stat.color}-300 text-xs`}>{stat.label}</p>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Campaign Cards */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.9 }}
+        className="space-y-3 flex-1 overflow-y-auto"
+      >
+        {[
+          { name: "Winter Support 2024", raised: "৳2.4M", goal: "৳3M", progress: 80 },
+          { name: "Education Fund", raised: "৳1.8M", goal: "৳2M", progress: 90 },
+          { name: "Healthcare Initiative", raised: "₳1.2M", goal: "৳2.5M", progress: 48 },
+        ].map((campaign, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.1 + i * 0.15 }}
+            className="bg-slate-800/40 border border-white/10 rounded-lg p-4"
+          >
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-white font-semibold text-sm">{campaign.name}</p>
+              <p className="text-rose-300 text-sm font-bold">{campaign.progress}%</p>
+            </div>
+            <div className="bg-slate-900/50 rounded-full h-2 mb-2 overflow-hidden">
+              <motion.div
+                className="h-full bg-gradient-to-r from-rose-500 to-pink-400"
+                initial={{ width: 0 }}
+                animate={{ width: `${campaign.progress}%` }}
+                transition={{ delay: 1.4 + i * 0.15, duration: 0.8 }}
+              />
+            </div>
+            <div className="flex items-center justify-between text-xs text-slate-400">
+              <span>{campaign.raised} of {campaign.goal}</span>
+              <motion.span
+                className="text-green-400"
+                animate={{ opacity: [1, 0.5, 1] }}
+                transition={{ duration: 1, repeat: Infinity }}
+              >
+                ❤️
+              </motion.span>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Recent Donors */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6 }}
+        className="mt-4 bg-slate-800/40 border border-white/10 rounded-lg p-3"
+      >
+        <p className="text-white font-semibold text-sm mb-2">Recent Donations</p>
+        {[
+          "Anonymous donated ৳1,000",
+          "Rahman Hassan donated ৳500",
+          "Farah Iqbal donated ৳250",
+        ].map((donation, i) => (
+          <motion.p
+            key={i}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.8 + i * 0.1 }}
+            className="text-slate-300 text-xs mb-1"
+          >
+            {donation}
+          </motion.p>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
