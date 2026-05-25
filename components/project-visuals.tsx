@@ -648,6 +648,79 @@ export function EngineeringVisual() {
   );
 }
 
+// Chess Board Visualization
+export function ChessBoardVisual() {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-amber-900/20 to-slate-900">
+      {/* Chess board grid */}
+      <div className="relative w-48 h-48 grid grid-cols-8 gap-0 border-2 border-amber-700">
+        {[...Array(64)].map((_, i) => {
+          const row = Math.floor(i / 8);
+          const col = i % 8;
+          const isLight = (row + col) % 2 === 0;
+          return (
+            <motion.div
+              key={i}
+              className={`w-6 h-6 ${isLight ? 'bg-amber-100/30' : 'bg-amber-900/60'} border border-amber-700/30`}
+              animate={{
+                opacity: isLight ? [0.3, 0.5, 0.3] : [0.6, 0.8, 0.6],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: (i % 8) * 0.05,
+              }}
+            />
+          );
+        })}
+        
+        {/* Animated chess pieces */}
+        <motion.div
+          className="absolute w-5 h-5 text-lg flex items-center justify-center"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          style={{
+            left: "12px",
+            top: "12px",
+          }}
+        >
+          ♚
+        </motion.div>
+
+        <motion.div
+          className="absolute w-5 h-5 text-lg flex items-center justify-center"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            delay: 1,
+            ease: "easeInOut",
+          }}
+          style={{
+            right: "12px",
+            bottom: "12px",
+          }}
+        >
+          ♔
+        </motion.div>
+      </div>
+
+      {/* Glow */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-amber-500/10" />
+    </div>
+  );
+}
+
 // Generic Loading Pulse
 export function DefaultVisual() {
   return (
@@ -677,6 +750,11 @@ export function ProjectVisual({ projectId }: { projectId: string }) {
     "intelligent-chessboard": () => <ChessBoardVisual />,
     "catch-it-game": () => <ArcadeGameVisual />,
     "structural-design": () => <EngineeringVisual />,
+    
+    // Additional project visuals
+    "getlift": () => <MapRouteVisual />,
+    "iot-vending-machine": () => <IoTDeviceVisual />,
+    "potho-shishur-alo": () => <DonationVisual />,
     
     // Default
     default: () => <DefaultVisual />,
