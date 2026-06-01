@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, Star, ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/section";
 import { projects, projectFilters } from "@/data/projects";
+import { ProjectDetailModal } from "@/components/project-detail-modal";
 import {
   HRSolutionPreview,
   MultiTenantSyncPreview,
@@ -64,6 +65,8 @@ const itemVariants = {
 
 export function Projects() {
   const [filter, setFilter] = useState<FilterValue>("all");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const visible = useMemo<Project[]>(() => {
     if (filter === "all") return projects;
@@ -73,6 +76,16 @@ export function Projects() {
   // Separate featured and regular projects
   const featuredProjects = visible.filter((p) => p.status === "featured");
   const regularProjects = visible.filter((p) => p.status !== "featured");
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedProject(null), 300);
+  };
 
   return (
     <Section
@@ -141,7 +154,12 @@ export function Projects() {
           </motion.h3>
           <div className="space-y-8">
             {featuredProjects.map((project, idx) => (
-              <FeaturedProjectCard key={project.id} project={project} index={idx} />
+              <FeaturedProjectCard
+                key={project.id}
+                project={project}
+                index={idx}
+                onClick={() => handleProjectClick(project)}
+              />
             ))}
           </div>
         </motion.div>
@@ -179,7 +197,11 @@ export function Projects() {
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <ProjectCard project={p} index={idx} />
+                  <ProjectCard
+                    project={p}
+                    index={idx}
+                    onClick={() => handleProjectClick(p)}
+                  />
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -197,6 +219,13 @@ export function Projects() {
           <p className="text-muted-foreground">No projects found in this category.</p>
         </motion.div>
       )}
+
+      {/* Project Detail Modal */}
+      <ProjectDetailModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </Section>
   );
 }
@@ -204,10 +233,12 @@ export function Projects() {
 // Featured Project Component - Premium Layout
 function FeaturedProjectCard({
   project,
-  index
+  index,
+  onClick
 }: {
   project: Project;
   index: number;
+  onClick: () => void;
 }) {
   return (
     <motion.div
@@ -215,7 +246,8 @@ function FeaturedProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ delay: index * 0.1, duration: 0.6 }}
-      className="group relative"
+      className="group relative cursor-pointer"
+      onClick={onClick}
     >
       <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/8 via-white/3 to-transparent backdrop-blur-2xl shadow-[0_20px_80px_0_rgba(255,255,255,0.08)] transition-all duration-500 hover:border-white/20 hover:shadow-[0_40px_120px_0_rgba(255,255,255,0.12)]">
         {/* Animated gradient border */}
@@ -363,12 +395,21 @@ function FeaturedProjectCard({
 }
 
 // Regular Project Card Component
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({
+  project,
+  index,
+  onClick
+}: {
+  project: Project;
+  index: number;
+  onClick: () => void;
+}) {
   return (
     <motion.div
       whileHover={{ y: -6 }}
       transition={{ duration: 0.4, type: "spring", stiffness: 300, damping: 20 }}
-      className="group h-full"
+      className="group h-full cursor-pointer"
+      onClick={onClick}
     >
       <div className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/6 to-white/0 backdrop-blur-xl transition-all duration-500 hover:border-white/25 hover:from-white/12 hover:to-white/4 hover:shadow-[0_25px_50px_0_rgba(255,255,255,0.1)]">
         {/* Animated corner glow on hover */}
