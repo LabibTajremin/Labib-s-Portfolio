@@ -7,14 +7,16 @@ export const personalInfo: PersonalInfo = {
   initials: "LT",
   title: "Software Engineer",
   taglines: [
-    "scalable SaaS systems",
+    "scalable SaaS solutions",
     "multi-tenant architectures",
-    "microservices on Azure",
-    "enterprise web apps",
-    ".NET solutions",
-    "reliable sync engines"
+    "microservices-based systems",
+    "system design",
+    "data synchronization",
+    "enterprise applications",
+    ".NET & Azure expertise",
+    "Agile collaboration"
   ],
-  bio: "Results-driven Software Engineer with 5+ years of experience designing and developing enterprise-grade SaaS solutions, multi-tenant architectures, and microservices on Azure.",
+  bio: "Results-driven Software Engineer with expertise in designing and developing scalable SaaS solutions, multi-tenant architectures, and microservices-based systems. Skilled in .NET, React, and Azure cloud services, with a strong foundation in system design, data synchronization, and enterprise application development. Adept at collaborating in Agile environments to deliver high-quality, maintainable software solutions.",
   longBio: [
     "I'm a Software Engineer based in Dhaka, Bangladesh, with over five years of professional experience building enterprise-grade web applications and scalable SaaS systems. My core stack revolves around .NET (C#), React, and SQL Server, with deep hands-on experience in Azure cloud services.",
     "Currently at VivaSoft Ltd, I architected and implemented a multi-tenant, multi-database SaaS platform from the ground up — handling secure data isolation across clients while keeping everything synchronized reliably through a 30-minute automated cycle with on-demand real-time sync support.",

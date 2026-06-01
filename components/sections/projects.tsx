@@ -5,11 +5,42 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, Star, ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/section";
 import { projects, projectFilters } from "@/data/projects";
-import { ProjectVisual } from "@/components/project-visuals";
+import {
+  HRSolutionPreview,
+  MultiTenantSyncPreview,
+  DocumentPortalPreview,
+  ClinicalTrialPreview,
+  LeaseManagementPreview,
+  WindowsServicePreview,
+  StructuralDesignPreview,
+  GetLiftPreview,
+  ChessBoardPreview,
+  VendingMachinePreview,
+  CatchItPreview,
+  StoreManagementPreview,
+  DonationPlatformPreview,
+} from "@/components/project-previews";
 import type { Project } from "@/types";
 import { cn } from "@/lib/utils";
 
 type FilterValue = (typeof projectFilters)[number]["value"];
+
+// Map project IDs to preview components
+const projectPreviewMap: Record<string, () => React.ReactNode> = {
+  "hr-solution": () => <HRSolutionPreview />,
+  "data-sync": () => <MultiTenantSyncPreview />,
+  "document-portal": () => <DocumentPortalPreview />,
+  "clinical-trial": () => <ClinicalTrialPreview />,
+  "lease-management": () => <LeaseManagementPreview />,
+  "windows-service": () => <WindowsServicePreview />,
+  "structural-design": () => <StructuralDesignPreview />,
+  "getlift": () => <GetLiftPreview />,
+  "intelligent-chessboard": () => <ChessBoardPreview />,
+  "iot-vending-machine": () => <VendingMachinePreview />,
+  "catch-it-game": () => <CatchItPreview />,
+  "store-management": () => <StoreManagementPreview />,
+  "potho-shishur-alo": () => <DonationPlatformPreview />,
+};
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -201,7 +232,7 @@ function FeaturedProjectCard({
           >
             {/* Premium animated visual */}
             <div className="absolute inset-0">
-              <ProjectVisual projectId={project.id} />
+              {projectPreviewMap[project.id] ? projectPreviewMap[project.id]() : null}
             </div>
 
             {/* Overlay gradient */}
@@ -353,7 +384,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {/* Project Image/Visual */}
           <div className="relative flex h-48 items-center justify-center overflow-hidden border-b border-white/10 bg-gradient-to-br from-slate-900/60 to-slate-950/40">
             {/* Premium animated visual */}
-            <ProjectVisual projectId={project.id} />
+            {projectPreviewMap[project.id] ? projectPreviewMap[project.id]() : null}
 
             {/* Status badge */}
             <StatusBadge status={project.status} />

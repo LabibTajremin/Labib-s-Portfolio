@@ -26,7 +26,7 @@ export const experience: ExperienceItem[] = [
     id: "relisource",
     role: "Software Engineer",
     company: "ReliSource",
-    duration: "Sep 2021 — May 2023",
+    duration: "September 2021 — May 2023",
     responsibilities: [
       "Delivered enterprise-grade web and mobile applications using OutSystems, accelerating development cycles by 40%.",
       "Designed and implemented custom client solutions with scalable architectures and optimized database performance.",
@@ -39,11 +39,10 @@ export const experience: ExperienceItem[] = [
     id: "adipster",
     role: "Software Engineer",
     company: "Adipster Tech Limited",
-    duration: "Jul 2020 — Aug 2021",
+    duration: "July 2020 — August 2021",
     responsibilities: [
       "Developed and maintained enterprise applications using .NET technologies, ensuring code quality and adherence to best practices.",
-      "Coordinated with team members to streamline development workflows and improve delivery timelines.",
-      "Sharpened understanding of clean code practices and team-based delivery workflows."
+      "Coordinated with team members to streamline development workflows and improve delivery timelines."
     ],
     stack: [".NET", "C#", "SQL Server", "JavaScript"]
   }
