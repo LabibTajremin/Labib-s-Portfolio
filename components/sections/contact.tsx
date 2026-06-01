@@ -119,6 +119,30 @@ export function Contact() {
               </Component>
             );
           })}
+
+          {/* Response Time & Availability */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="mt-6 space-y-3 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
+          >
+            <div className="flex items-start gap-3">
+              <span className="text-lg">⚡</span>
+              <div>
+                <p className="text-sm font-semibold text-foreground">Quick Response</p>
+                <p className="text-xs text-muted-foreground">I typically respond within 24 hours</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-lg">🕐</span>
+              <div>
+                <p className="text-sm font-semibold text-foreground">Based in Dhaka, Bangladesh</p>
+                <p className="text-xs text-muted-foreground">UTC+6 • Available Mon–Fri for calls</p>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
 
         <motion.div

@@ -123,13 +123,16 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-8 flex flex-wrap gap-3"
+              className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3"
             >
               <Button asChild>
                 <a href="#projects">
                   View Projects
                   <ArrowRight className="h-4 w-4" />
                 </a>
+              </Button>
+              <Button asChild>
+                <a href="#contact">Contact Me</a>
               </Button>
               <Button asChild variant="ghost">
                 <a href="/resume.pdf" download>
@@ -142,9 +145,6 @@ export function Hero() {
                   <FileText className="h-4 w-4" />
                   Cover Letter
                 </a>
-              </Button>
-              <Button asChild variant="ghost">
-                <a href="#contact">Contact Me</a>
               </Button>
             </motion.div>
 

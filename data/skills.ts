@@ -63,7 +63,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "SQL Server", proficiency: "expert" },
       { name: "MySQL", proficiency: "advanced" },
       { name: "PostgreSQL", proficiency: "advanced" },
-      { name: "Entity Framework", proficiency: "advanced" }
+      { name: "MongoDB", proficiency: "proficient" }
     ]
   },
   {

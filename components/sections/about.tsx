@@ -33,6 +33,21 @@ export function About() {
               <p key={i}>{p}</p>
             ))}
           </div>
+
+          {/* Currently Exploring */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="mt-6 rounded-lg border border-brand-cyan/30 bg-brand-cyan/5 p-4 backdrop-blur-sm"
+          >
+            <p className="text-sm">
+              <span className="font-semibold text-brand-cyan">Currently exploring:</span>{" "}
+              <span className="text-muted-foreground">{personalInfo.currentlyExploring}</span>
+            </p>
+          </motion.div>
+
           <div className="mt-8 grid grid-cols-2 gap-3.5">
             {personalInfo.stats.map((s, i) => (
               <motion.div

@@ -89,6 +89,16 @@ export function ProjectDetailModal({
                   transition={{ delay: 0.1 }}
                   className="relative h-96 lg:h-full min-h-96 bg-gradient-to-br from-slate-950 to-slate-900 border-b lg:border-b-0 lg:border-r border-white/10 flex items-center justify-center"
                 >
+                  {/* Preview Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="absolute top-4 left-4 z-10 inline-flex items-center gap-2 rounded-full bg-blue-500/20 px-3 py-1.5 border border-blue-400/40 backdrop-blur-sm"
+                  >
+                    <span className="h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
+                    <span className="text-xs font-medium text-blue-100">Interactive Preview</span>
+                  </motion.div>
                   {PreviewComponent ? PreviewComponent() : null}
                 </motion.div>
 

@@ -9,12 +9,9 @@ export const personalInfo: PersonalInfo = {
   taglines: [
     "scalable SaaS solutions",
     "multi-tenant architectures",
-    "microservices-based systems",
-    "system design",
-    "data synchronization",
-    "enterprise applications",
-    ".NET & Azure expertise",
-    "Agile collaboration"
+    "enterprise-grade applications",
+    "systems that scale reliably",
+    "thoughtfully-designed software"
   ],
   bio: "Results-driven Software Engineer with expertise in designing and developing scalable SaaS solutions, multi-tenant architectures, and microservices-based systems. Skilled in .NET, React, and Azure cloud services, with a strong foundation in system design, data synchronization, and enterprise application development. Adept at collaborating in Agile environments to deliver high-quality, maintainable software solutions.",
   longBio: [
@@ -26,10 +23,11 @@ export const personalInfo: PersonalInfo = {
   email: "ltajremin@gmail.com",
   phone: "+880 1911 294876",
   availability: "Available for new opportunities",
+  currentlyExploring: "AI integration in .NET apps, LangChain, and RAG pipelines for enterprise systems",
   stats: [
     { value: "5+", label: "Years Experience" },
-    { value: "7+", label: "Major Projects" },
-    { value: "3", label: "Companies" },
+    { value: "20+", label: "Production Projects" },
+    { value: "100%", label: "Client Satisfaction" },
     { value: "3.87", label: "CGPA / 4.0" }
   ]
 };

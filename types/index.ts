@@ -13,6 +13,7 @@ export interface PersonalInfo {
   email: string;
   phone: string;
   availability: string;
+  currentlyExploring: string;
   stats: { value: string; label: string }[];
 }
 
