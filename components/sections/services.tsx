@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { services } from "@/data/services";
 import { MessageSquare, Lightbulb, Zap, Headphones } from "lucide-react";
 
+// Core Services Component with "How I Work" process flow
 export function Services() {
   const processSteps = [
     {
