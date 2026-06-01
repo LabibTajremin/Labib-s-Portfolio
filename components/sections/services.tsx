@@ -6,28 +6,30 @@ import { Card } from "@/components/ui/card";
 import { services } from "@/data/services";
 import { MessageSquare, Lightbulb, Zap, Headphones } from "lucide-react";
 
-const processSteps = [
-  {
-    icon: MessageSquare,
-    title: "Discovery Call",
-    description: "Understanding your vision, requirements, and constraints"
-  },
-  {
-    icon: Lightbulb,
-    title: "Proposal & Scoping",
-    description: "Detailed solution design with timeline and budget"
-  },
-  {
-    icon: Zap,
-    title: "Agile Delivery",
-    description: "Iterative development with bi-weekly sprints and demos"
-  },
-  {
-    icon: Headphones,
-    title: "Handoff & Support",
-    description: "Deployment, documentation, and ongoing maintenance"
-  }
-];
+export function Services() {
+  const processSteps = [
+    {
+      icon: MessageSquare,
+      title: "Discovery Call",
+      description: "Understanding your vision, requirements, and constraints"
+    },
+    {
+      icon: Lightbulb,
+      title: "Proposal & Scoping",
+      description: "Detailed solution design with timeline and budget"
+    },
+    {
+      icon: Zap,
+      title: "Agile Delivery",
+      description: "Iterative development with bi-weekly sprints and demos"
+    },
+    {
+      icon: Headphones,
+      title: "Handoff & Support",
+      description: "Deployment, documentation, and ongoing maintenance"
+    }
+  ];
+
   return (
     <Section
       id="services"
