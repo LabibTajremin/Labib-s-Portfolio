@@ -61,15 +61,15 @@ export function ProjectDetailModal({
             className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
           />
 
-          {/* Modal */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed left-1/2 top-1/2 z-50 w-[90vw] max-w-5xl -translate-x-1/2 -translate-y-1/2 max-h-[90vh] overflow-y-auto"
-          >
-            <div className="relative rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 shadow-2xl overflow-hidden">
+          {/* Modal Container */}
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
+              className="pointer-events-auto w-full max-w-5xl max-h-[90vh] rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 shadow-2xl overflow-hidden flex flex-col"
+            >
               {/* Close Button */}
               <motion.button
                 whileHover={{ scale: 1.1 }}
@@ -81,7 +81,7 @@ export function ProjectDetailModal({
               </motion.button>
 
               {/* Content */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full">
                 {/* Preview Section */}
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -97,7 +97,7 @@ export function ProjectDetailModal({
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.15 }}
-                  className="p-8 lg:p-10 flex flex-col"
+                  className="p-8 lg:p-10 flex flex-col overflow-y-auto max-h-[calc(90vh-2rem)]"
                 >
                   {/* Header */}
                   <div className="mb-6">
@@ -224,8 +224,8 @@ export function ProjectDetailModal({
                   </motion.div>
                 </motion.div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>
