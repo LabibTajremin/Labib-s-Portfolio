@@ -2,32 +2,51 @@
 
 import { motion } from "framer-motion";
 import React from "react";
+import { Car, Crown, Heart, CheckCircle2, Circle } from "lucide-react";
+
+// Shared macOS-style window chrome — gives every preview the feel of a real
+// app screenshot instead of a flat illustration.
+function WindowChrome({ title }: { title: string }) {
+  return (
+    <div className="-mx-6 -mt-6 mb-4 flex items-center gap-2 border-b border-white/10 bg-black/30 px-4 py-2.5 backdrop-blur-sm">
+      <div className="flex gap-1.5">
+        <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
+        <span className="h-2.5 w-2.5 rounded-full bg-amber-500/70" />
+        <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/70" />
+      </div>
+      <div className="ml-2 flex-1 truncate rounded-md bg-white/5 px-3 py-1 text-center text-[10px] font-medium tracking-wide text-slate-500">
+        {title}
+      </div>
+    </div>
+  );
+}
 
 // PROJECT 1: HR SOLUTION PLATFORM
 export function HRSolutionPreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-white mb-2">HR Dashboard</h2>
-        <p className="text-slate-400 text-sm">Multi-Tenant Enterprise HR Management</p>
+      <WindowChrome title="app.hrplatform.io/dashboard" />
+      <div className="mb-5">
+        <h2 className="text-xl font-bold text-white mb-1">HR Dashboard</h2>
+        <p className="text-slate-400 text-xs">Multi-Tenant Enterprise HR Management</p>
       </div>
 
-      <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
         {[
           { label: "Total Employees", value: "245", color: "from-blue-600 to-blue-400" },
           { label: "Attendance Rate", value: "94.2%", color: "from-green-600 to-green-400" },
           { label: "Pending Leaves", value: "12", color: "from-amber-600 to-amber-400" },
-          { label: "Payroll Ready", value: "✓", color: "from-purple-600 to-purple-400" },
+          { label: "Payroll Ready", value: "100%", color: "from-purple-600 to-purple-400" },
         ].map((card, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 * i }}
-            className={`bg-gradient-to-br ${card.color} bg-opacity-20 backdrop-blur-sm border border-white/10 rounded-lg p-4`}
+            className={`bg-gradient-to-br ${card.color} bg-opacity-20 backdrop-blur-sm border border-white/10 rounded-lg p-3`}
           >
-            <p className="text-slate-300 text-xs mb-2">{card.label}</p>
-            <motion.p className="text-2xl font-bold text-white" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 + 0.1 * i }}>
+            <p className="text-slate-300 text-[11px] mb-2">{card.label}</p>
+            <motion.p className="text-xl font-bold text-white" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 + 0.1 * i }}>
               {card.value}
             </motion.p>
           </motion.div>
@@ -42,8 +61,8 @@ export function HRSolutionPreview() {
           {["Sarah Johnson", "Mike Chen", "Emma Davis", "Alex Rodriguez"].map((name, i) => (
             <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.7 + 0.1 * i }} className="flex items-center justify-between py-2 px-3 bg-slate-900/50 rounded border border-white/5">
               <span className="text-slate-300 text-sm">{name}</span>
-              <motion.span animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 0.5, delay: 1 + 0.1 * i }} className="text-green-400 text-sm font-semibold">
-                ✓ Check-in
+              <motion.span animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 0.5, delay: 1 + 0.1 * i }} className="flex items-center gap-1.5 text-green-400 text-xs font-semibold">
+                <CheckCircle2 className="h-3.5 w-3.5" /> Checked-in
               </motion.span>
             </motion.div>
           ))}
@@ -61,19 +80,20 @@ export function HRSolutionPreview() {
 export function MultiTenantSyncPreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white mb-1">Sync Dashboard</h2>
-        <p className="text-slate-400 text-sm">Multi-Tenant Data Synchronization</p>
+      <WindowChrome title="sync.dashboard.internal" />
+      <div className="mb-5">
+        <h2 className="text-xl font-bold text-white mb-1">Sync Dashboard</h2>
+        <p className="text-slate-400 text-xs">Multi-Tenant Data Synchronization</p>
       </div>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="space-y-3 mb-6">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="space-y-2.5 mb-5">
         {["Acme Corp", "TechStart Inc", "Global Solutions"].map((tenant, i) => (
-          <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 + 0.15 * i }} className="bg-slate-800/40 border border-indigo-500/30 rounded-lg p-4 cursor-pointer hover:bg-slate-800/60 transition-all">
+          <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 + 0.15 * i }} className="bg-slate-800/40 border border-indigo-500/30 rounded-lg p-3.5 cursor-pointer hover:bg-slate-800/60 transition-all">
             <div className="flex items-center justify-between">
               <span className="text-white font-semibold text-sm">{tenant}</span>
               <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ delay: 0.8 + 0.2 * i, duration: 2, repeat: Infinity }} className="w-2 h-2 rounded-full bg-cyan-400" />
             </div>
-            <p className="text-slate-400 text-xs mt-2">Status: Syncing...</p>
+            <p className="text-slate-400 text-[11px] mt-1.5">Status: Syncing...</p>
           </motion.div>
         ))}
       </motion.div>
@@ -95,7 +115,7 @@ export function MultiTenantSyncPreview() {
       </motion.div>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="mt-4 bg-slate-900/50 border border-white/10 rounded p-3 text-xs text-slate-300">
-        <p className="text-green-400 mb-1">✓ Acme Corp: 1,240 records synced</p>
+        <p className="text-green-400 mb-1 flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5" /> Acme Corp: 1,240 records synced</p>
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }} className="text-cyan-400 mb-1">
           Syncing: TechStart Inc (847/1100)
         </motion.p>
@@ -111,12 +131,13 @@ export function MultiTenantSyncPreview() {
 export function DocumentPortalPreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white mb-1">Documents</h2>
-        <p className="text-slate-400 text-sm">Secure Document Sharing Portal</p>
+      <WindowChrome title="portal.documents.app" />
+      <div className="mb-5">
+        <h2 className="text-xl font-bold text-white mb-1">Documents</h2>
+        <p className="text-slate-400 text-xs">Secure Document Sharing Portal</p>
       </div>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="flex gap-2 mb-6 text-sm">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="flex gap-2 mb-5 text-sm">
         {["Home", "Contracts", "Reports"].map((folder, i) => (
           <motion.button key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 + 0.1 * i }} className={`px-3 py-1.5 rounded ${i === 1 ? "bg-blue-600/40 border border-blue-500/50 text-blue-300" : "bg-slate-800/40 border border-white/10 text-slate-300"}`}>
             {folder}
@@ -152,12 +173,13 @@ export function DocumentPortalPreview() {
 export function ClinicalTrialPreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white mb-1">Trial Management</h2>
-        <p className="text-slate-400 text-sm">Clinical Study Tracking System</p>
+      <WindowChrome title="trials.clinicalops.net" />
+      <div className="mb-5">
+        <h2 className="text-xl font-bold text-white mb-1">Trial Management</h2>
+        <p className="text-slate-400 text-xs">Clinical Study Tracking System</p>
       </div>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="mb-6 bg-slate-800/40 border border-white/10 rounded-lg p-4">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="mb-5 bg-slate-800/40 border border-white/10 rounded-lg p-4">
         <h3 className="text-white font-semibold text-sm mb-4">Study Phase Progress</h3>
         <div className="flex items-center justify-between gap-2">
           {["Screening", "Enrollment", "Treatment", "Follow-up", "Complete"].map((phase, i) => (
@@ -171,7 +193,7 @@ export function ClinicalTrialPreview() {
         </div>
       </motion.div>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="grid grid-cols-3 gap-3 mb-6">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="grid grid-cols-3 gap-3 mb-5">
         {[
           { label: "Enrolled", value: "847", color: "sky" },
           { label: "Active", value: "756", color: "green" },
@@ -210,12 +232,13 @@ export function ClinicalTrialPreview() {
 export function LeaseManagementPreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white mb-1">Lease Origination</h2>
-        <p className="text-slate-400 text-sm">OutSystems Lease Management System</p>
+      <WindowChrome title="lease.originate.io" />
+      <div className="mb-5">
+        <h2 className="text-xl font-bold text-white mb-1">Lease Origination</h2>
+        <p className="text-slate-400 text-xs">OutSystems Lease Management System</p>
       </div>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="mb-6 flex gap-2 justify-between">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="mb-5 flex gap-2 justify-between">
         {["Property", "Tenant", "Terms", "Review", "Submit"].map((step, i) => (
           <motion.div key={i} className="flex-1">
             <motion.div className={`h-1 rounded-full mb-2 ${i <= 2 ? "bg-purple-500" : "bg-slate-700"}`} initial={{ width: "0%" }} animate={{ width: i <= 2 ? "100%" : "0%" }} transition={{ delay: 0.5 + 0.1 * i, duration: 0.5 }} />
@@ -252,16 +275,17 @@ export function LeaseManagementPreview() {
 export function WindowsServicePreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden font-mono text-sm">
+      <WindowChrome title="FileProcessingService.exe — Console" />
       <div className="mb-4">
-        <h2 className="text-xl font-bold text-white mb-1">File Processing Service</h2>
+        <h2 className="text-lg font-bold text-white mb-1">File Processing Service</h2>
         <p className="text-slate-400 text-xs">.NET Core Windows Service Monitor</p>
       </div>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="bg-slate-800/40 border border-white/10 rounded p-3 mb-4">
         <div className="flex items-center justify-between text-xs">
           <span className="text-slate-400">Service Status:</span>
-          <motion.span animate={{ opacity: [1, 0.6, 1] }} transition={{ duration: 1.5, repeat: Infinity }} className="text-green-400 font-bold">
-            Running
+          <motion.span animate={{ opacity: [1, 0.6, 1] }} transition={{ duration: 1.5, repeat: Infinity }} className="flex items-center gap-1.5 text-green-400 font-bold">
+            <Circle className="h-2 w-2 fill-current" /> Running
           </motion.span>
         </div>
         <div className="flex items-center justify-between text-xs mt-2">
@@ -312,9 +336,10 @@ export function WindowsServicePreview() {
 export function StructuralDesignPreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white mb-1">Beam Calculator</h2>
-        <p className="text-slate-400 text-sm">Structural Design Automation</p>
+      <WindowChrome title="civilproject.app/calculator" />
+      <div className="mb-5">
+        <h2 className="text-xl font-bold text-white mb-1">Beam Calculator</h2>
+        <p className="text-slate-400 text-xs">Structural Design Automation</p>
       </div>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="bg-slate-800/40 border border-white/10 rounded-lg p-4 mb-4">
@@ -330,8 +355,8 @@ export function StructuralDesignPreview() {
               <div className="flex items-center gap-2">
                 <span className="text-slate-200 text-sm font-semibold">{param.value}</span>
                 {param.valid && (
-                  <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ delay: 0.8 + 0.15 * i, duration: 0.5 }} className="text-green-400 text-sm">
-                    OK
+                  <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ delay: 0.8 + 0.15 * i, duration: 0.5 }} className="text-green-400">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
                   </motion.span>
                 )}
               </div>
@@ -369,14 +394,15 @@ export function StructuralDesignPreview() {
 export function GetLiftPreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white mb-1">GetLift</h2>
-        <p className="text-slate-400 text-sm">Ride-Sharing Platform</p>
+      <WindowChrome title="getlift.app/ride" />
+      <div className="mb-5">
+        <h2 className="text-xl font-bold text-white mb-1">GetLift</h2>
+        <p className="text-slate-400 text-xs">Ride-Sharing Platform</p>
       </div>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="relative bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 rounded-lg flex-1 mb-4 overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "linear-gradient(rgba(148,163,184,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.1) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-        
+
         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.6 }} className="absolute w-8 h-8 bg-green-500 rounded-full border-2 border-green-300 flex items-center justify-center" style={{ left: "30%", top: "40%" }}>
           <div className="w-2 h-2 bg-white rounded-full" />
         </motion.div>
@@ -385,8 +411,8 @@ export function GetLiftPreview() {
           <div className="w-2 h-2 bg-white rounded-full" />
         </motion.div>
 
-        <motion.div animate={{ left: ["30%", "75%"], top: ["40%", "30%"] }} transition={{ delay: 1.5, duration: 2 }} className="absolute w-6 h-6 bg-yellow-500 rounded-sm flex items-center justify-center text-white text-xs font-bold">
-          CAR
+        <motion.div animate={{ left: ["30%", "75%"], top: ["40%", "30%"] }} transition={{ delay: 1.5, duration: 2 }} className="absolute flex h-7 w-7 items-center justify-center rounded-full bg-yellow-500 shadow-[0_0_16px_rgba(234,179,8,0.6)]">
+          <Car className="h-4 w-4 text-slate-900" />
         </motion.div>
       </motion.div>
 
@@ -420,9 +446,10 @@ export function GetLiftPreview() {
 export function ChessBoardPreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
+      <WindowChrome title="chessboard.local/game" />
       <div className="mb-4">
-        <h2 className="text-2xl font-bold text-white mb-1">Chess Board</h2>
-        <p className="text-slate-400 text-sm">IoT-Enabled AI Chess System</p>
+        <h2 className="text-xl font-bold text-white mb-1">Chess Board</h2>
+        <p className="text-slate-400 text-xs">IoT-Enabled AI Chess System</p>
       </div>
 
       <div className="flex gap-4 flex-1">
@@ -443,8 +470,8 @@ export function ChessBoardPreview() {
           <h3 className="text-white font-semibold text-sm mb-4">AI Analysis</h3>
           <div className="mb-4">
             <p className="text-slate-400 text-xs mb-2">Thinking...</p>
-            <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 1, repeat: Infinity }} className="text-2xl">
-              K
+            <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 1, repeat: Infinity }}>
+              <Crown className="h-6 w-6 text-amber-300" />
             </motion.div>
           </div>
 
@@ -473,9 +500,10 @@ export function ChessBoardPreview() {
 export function VendingMachinePreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white mb-1">Smart Vending</h2>
-        <p className="text-slate-400 text-sm">IoT Connected Vending System</p>
+      <WindowChrome title="vending.iot.local/monitor" />
+      <div className="mb-5">
+        <h2 className="text-xl font-bold text-white mb-1">Smart Vending</h2>
+        <p className="text-slate-400 text-xs">IoT Connected Vending System</p>
       </div>
 
       <div className="flex gap-4 flex-1">
@@ -540,9 +568,10 @@ export function VendingMachinePreview() {
 export function CatchItPreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-purple-950/20 to-slate-950 p-6 flex flex-col overflow-hidden">
+      <WindowChrome title="catchit.game/play" />
       <div className="mb-4">
-        <h2 className="text-2xl font-bold text-white mb-1">Catch It Game</h2>
-        <p className="text-slate-400 text-sm">Dynamic Game Engine</p>
+        <h2 className="text-xl font-bold text-white mb-1">Catch It Game</h2>
+        <p className="text-slate-400 text-xs">Dynamic Game Engine</p>
       </div>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="relative bg-gradient-to-b from-slate-800 to-slate-900 border border-white/10 rounded-lg flex-1 overflow-hidden flex items-center justify-center mb-4">
@@ -554,14 +583,10 @@ export function CatchItPreview() {
         </motion.div>
 
         {[0, 1, 2, 3].map((i) => (
-          <motion.div key={i} animate={{ y: [-40, 360] }} transition={{ duration: 2 + i * 0.3, repeat: Infinity, delay: i * 0.25, ease: "linear" }} className="absolute w-6 h-6 bg-gradient-to-b from-amber-300 to-orange-500 rounded-sm flex items-center justify-center text-white text-xs font-bold" style={{ left: `${15 + (i % 4) * 25}%`, boxShadow: "0 0 12px rgba(251, 191, 36, 0.6)" }}>
-            O
-          </motion.div>
+          <motion.div key={i} animate={{ y: [-40, 360] }} transition={{ duration: 2 + i * 0.3, repeat: Infinity, delay: i * 0.25, ease: "linear" }} className="absolute h-5 w-5 rounded-full bg-gradient-to-b from-amber-300 to-orange-500" style={{ left: `${15 + (i % 4) * 25}%`, boxShadow: "0 0 12px rgba(251, 191, 36, 0.6)" }} />
         ))}
 
-        <motion.div animate={{ x: [-60, 60, -60] }} transition={{ duration: 4, repeat: Infinity }} className="absolute bottom-8 w-12 h-6 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center text-white font-bold">
-          BAR
-        </motion.div>
+        <motion.div animate={{ x: [-60, 60, -60] }} transition={{ duration: 4, repeat: Infinity }} className="absolute bottom-8 h-3 w-16 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 shadow-[0_0_16px_rgba(34,211,238,0.5)]" />
       </motion.div>
 
       <div className="grid grid-cols-3 gap-2">
@@ -584,12 +609,13 @@ export function CatchItPreview() {
 export function StoreManagementPreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 flex flex-col overflow-hidden">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white mb-1">Inventory Manager</h2>
-        <p className="text-slate-400 text-sm">Store Management System</p>
+      <WindowChrome title="inventory.storeops.app" />
+      <div className="mb-5">
+        <h2 className="text-xl font-bold text-white mb-1">Inventory Manager</h2>
+        <p className="text-slate-400 text-xs">Store Management System</p>
       </div>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="grid grid-cols-3 gap-3 mb-6">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="grid grid-cols-3 gap-3 mb-5">
         {[
           { label: "Total Products", value: "1,240", color: "blue" },
           { label: "Low Stock", value: "34", color: "red" },
@@ -639,19 +665,20 @@ export function StoreManagementPreview() {
 export function DonationPlatformPreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-rose-950/20 to-slate-950 p-6 flex flex-col overflow-hidden">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white mb-1">Potho Shishur Alo</h2>
-        <p className="text-slate-400 text-sm">Donation Platform for Street Children</p>
+      <WindowChrome title="pothoshishuralo.org" />
+      <div className="mb-5">
+        <h2 className="text-xl font-bold text-white mb-1">Potho Shishur Alo</h2>
+        <p className="text-slate-400 text-xs">Donation Platform for Street Children</p>
       </div>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="grid grid-cols-3 gap-3 mb-6">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="grid grid-cols-3 gap-3 mb-5">
         {[
           { label: "Children Helped", value: "1,250" },
           { label: "Funds Raised", value: "8.4M BDT" },
           { label: "Active Campaigns", value: "42" },
         ].map((stat, i) => (
           <motion.div key={i} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5 + 0.1 * i }} className="bg-slate-800/40 border border-white/10 rounded-lg p-4 text-center">
-            <motion.p className="text-white text-2xl font-bold mb-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 + 0.1 * i }}>
+            <motion.p className="text-white text-xl font-bold mb-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 + 0.1 * i }}>
               {stat.value}
             </motion.p>
             <p className="text-slate-400 text-xs">{stat.label}</p>
@@ -675,8 +702,8 @@ export function DonationPlatformPreview() {
             </div>
             <div className="flex items-center justify-between text-xs text-slate-400">
               <span>{campaign.raised} of {campaign.goal}</span>
-              <motion.span className="text-red-400" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 1, repeat: Infinity }}>
-                HEART
+              <motion.span className="flex items-center gap-1 text-rose-400" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 1, repeat: Infinity }}>
+                <Heart className="h-3 w-3 fill-current" />
               </motion.span>
             </div>
           </motion.div>
