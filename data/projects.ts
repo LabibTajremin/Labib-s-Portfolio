@@ -149,9 +149,9 @@ export const projects: Project[] = [
   },
   {
     id: "maapkathi-studio",
-    title: "Maapkathi Studio - White-Label Portfolio Platform",
+    title: "White-Label Portfolio & Showcase Platform",
     description:
-      "Dual-mode (SaaS + self-hosted licensed) portfolio and showcase platform for design studios, built with clean architecture.",
+      "Dual-mode (SaaS + self-hosted licensed) portfolio and showcase platform for design studios, built with clean architecture. Client: Maapkathi Studio.",
     longDescription:
       "Client project for Maapkathi Studio. Delivered a public-facing showcase site (projects, team, SEO/JSON-LD) that's fully editable through a custom admin panel (content, branding, theming/motion, SEO, contact forms), 6 pluggable storage adapters (S3, R2, Supabase, Google Drive, Bunny, Local), RBAC authentication with secure password hashing, an approvals/audit-log workflow, and offline-tolerant license verification for self-hosted deployments. Covered by 88 unit, 18 integration, and 8 end-to-end tests, all passing in CI.",
     emoji: "🎨",
