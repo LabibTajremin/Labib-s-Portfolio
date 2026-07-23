@@ -7,7 +7,8 @@ import {
   ShieldCheck,
   Zap,
   Wrench,
-  Brain
+  Brain,
+  Layers
 } from "lucide-react";
 import type { SkillCategory } from "@/types";
 
@@ -81,15 +82,29 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     id: "architecture",
-    title: "Architecture & Security",
-    description: "Multi-tenant systems with robust auth.",
+    title: "Software Architecture",
+    description: "Designing scalable, maintainable systems.",
+    icon: Layers,
+    skills: [
+      { name: "Clean Architecture", proficiency: "expert" },
+      { name: "Multi-Tenant SaaS Design", proficiency: "expert" },
+      { name: "Domain-Driven Design", proficiency: "advanced" },
+      { name: "Row-Level Security (RLS)", proficiency: "advanced" },
+      { name: "Event-Driven & Data Sync", proficiency: "advanced" },
+      { name: "Microservices", proficiency: "advanced" },
+      { name: "System & API Design", proficiency: "expert" }
+    ]
+  },
+  {
+    id: "security",
+    title: "Security & Identity",
+    description: "Auth, access control, and tenant isolation.",
     icon: ShieldCheck,
     skills: [
-      { name: "Multi-Tenant", proficiency: "advanced" },
-      { name: "Microservices", proficiency: "advanced" },
-      { name: "System Design", proficiency: "advanced" },
-      { name: "Okta", proficiency: "proficient" },
-      { name: "OAuth", proficiency: "advanced" }
+      { name: "OAuth", proficiency: "advanced" },
+      { name: "Okta / IdentityServer", proficiency: "proficient" },
+      { name: "RBAC & Audit Logging", proficiency: "advanced" },
+      { name: "Secure Multi-Tenant Isolation", proficiency: "advanced" }
     ]
   },
   {
@@ -134,6 +149,8 @@ export const skillCategories: SkillCategory[] = [
 ];
 
 export const coreCompetencies = [
+  "Clean Architecture & DDD",
+  "Multi-tenant SaaS system design",
   "Strong C# & .NET expertise",
   "OOP, DSA fundamentals",
   "Database & Entity Framework",
