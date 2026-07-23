@@ -173,36 +173,26 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="relative mx-auto aspect-square w-full max-w-[420px] lg:justify-self-end"
+            className="relative mx-auto w-full max-w-[420px] lg:justify-self-end"
           >
-            <div className="absolute inset-0 rounded-full p-[3px] animate-spin-slow"
-                 style={{
-                   background:
-                     "conic-gradient(from 0deg, hsl(var(--brand-violet)), hsl(var(--brand-cyan)), hsl(var(--brand-pink)), hsl(var(--brand-violet)))"
-                 }}>
-              <div className="flex h-full w-full items-center justify-center rounded-full bg-background">
-                <span className="font-display text-[7rem] font-bold leading-none gradient-text tracking-tighter">
-                  {personalInfo.initials}
-                </span>
-              </div>
-            </div>
+            <HeroCodeCard />
 
             <FloatingBadge
-              className="left-[-12%] top-[6%]"
+              className="-top-6 left-[-6%]"
               emoji="⚡"
               label="Status"
               value="Open to Work"
               delay={0}
             />
             <FloatingBadge
-              className="bottom-[18%] right-[-8%]"
+              className="-bottom-10 right-[-4%]"
               emoji="🚀"
               label="Experience"
               value="5+ Years"
               delay={-2}
             />
             <FloatingBadge
-              className="-bottom-2 left-[8%]"
+              className="-bottom-10 left-[8%]"
               emoji=".NET"
               label="Core Stack"
               value="C# · React · Azure"
@@ -227,6 +217,97 @@ export function Hero() {
         </motion.div>
       </div>
     </section>
+  );
+}
+
+const CODE_LINES: { indent: number; tokens: { text: string; className: string }[] }[] = [
+  { indent: 0, tokens: [{ text: "const", className: "text-pink-400" }, { text: " developer ", className: "text-slate-200" }, { text: "=", className: "text-pink-400" }, { text: " {", className: "text-slate-400" }] },
+  { indent: 1, tokens: [{ text: "name", className: "text-cyan-300" }, { text: ": ", className: "text-slate-400" }, { text: '"Labib Tajremin"', className: "text-emerald-300" }, { text: ",", className: "text-slate-400" }] },
+  { indent: 1, tokens: [{ text: "role", className: "text-cyan-300" }, { text: ": ", className: "text-slate-400" }, { text: '"Software Engineer"', className: "text-emerald-300" }, { text: ",", className: "text-slate-400" }] },
+  { indent: 1, tokens: [{ text: "stack", className: "text-cyan-300" }, { text: ": [", className: "text-slate-400" }, { text: '"C#", ".NET", "React", "Azure"', className: "text-emerald-300" }, { text: "],", className: "text-slate-400" }] },
+  { indent: 1, tokens: [{ text: "status", className: "text-cyan-300" }, { text: ": ", className: "text-slate-400" }, { text: '"open_to_work"', className: "text-amber-300" }, { text: ",", className: "text-slate-400" }] },
+  { indent: 0, tokens: [{ text: "};", className: "text-slate-400" }] }
+];
+
+function HeroCodeCard() {
+  return (
+    <div className="relative">
+      {/* Ambient glow breathing behind the card for depth */}
+      <motion.div
+        className="absolute inset-[-8%] -z-10 rounded-[2rem] opacity-40 blur-3xl"
+        style={{
+          background:
+            "conic-gradient(from 0deg, hsl(var(--brand-violet)), hsl(var(--brand-cyan)), hsl(var(--brand-pink)), hsl(var(--brand-violet)))"
+        }}
+        animate={{ opacity: [0.25, 0.45, 0.25] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950/80 shadow-2xl backdrop-blur-xl">
+        {/* Gradient top edge */}
+        <div
+          className="h-[3px] w-full"
+          style={{
+            background:
+              "linear-gradient(90deg, hsl(var(--brand-violet)), hsl(var(--brand-cyan)), hsl(var(--brand-pink)))"
+          }}
+        />
+
+        {/* Window chrome */}
+        <div className="flex items-center gap-2 border-b border-white/10 bg-black/30 px-4 py-3">
+          <div className="flex gap-1.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-500/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/70" />
+          </div>
+          <div className="ml-2 flex-1 truncate rounded-md bg-white/5 px-3 py-1 text-center text-[11px] font-medium tracking-wide text-slate-400">
+            profile.ts
+          </div>
+        </div>
+
+        {/* Code body */}
+        <div className="p-6 font-mono text-[13px] leading-relaxed sm:text-sm">
+          {CODE_LINES.map((line, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6 + i * 0.18, duration: 0.4, ease: "easeOut" }}
+              style={{ paddingLeft: `${line.indent * 1.25}rem` }}
+              className="whitespace-pre"
+            >
+              <span className="mr-3 select-none text-slate-600">{String(i + 1).padStart(2, "0")}</span>
+              {line.tokens.map((t, j) => (
+                <span key={j} className={t.className}>
+                  {t.text}
+                </span>
+              ))}
+              {i === CODE_LINES.length - 1 && (
+                <motion.span
+                  className="ml-1 inline-block h-4 w-[7px] translate-y-[2px] bg-primary align-middle"
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                />
+              )}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bottom status bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.9, duration: 0.5 }}
+          className="flex items-center justify-between border-t border-white/10 bg-black/20 px-4 py-2.5 text-[11px] text-slate-400"
+        >
+          <span className="flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse-glow" />
+            Available for hire
+          </span>
+          <span>TypeScript</span>
+        </motion.div>
+      </div>
+    </div>
   );
 }
 
