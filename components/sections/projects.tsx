@@ -20,6 +20,12 @@ import {
   CatchItPreview,
   StoreManagementPreview,
   DonationPlatformPreview,
+  AcademicLabPreview,
+  KhorochPreview,
+  EcommerceSaasPreview,
+  MomentumPreview,
+  StudyAbroadPreview,
+  MaapkathiStudioPreview,
 } from "@/components/project-previews";
 import type { Project } from "@/types";
 import { cn } from "@/lib/utils";
@@ -41,6 +47,12 @@ const projectPreviewMap: Record<string, () => React.ReactNode> = {
   "catch-it-game": () => <CatchItPreview />,
   "store-management": () => <StoreManagementPreview />,
   "potho-shishur-alo": () => <DonationPlatformPreview />,
+  "academic-lab-platform": () => <AcademicLabPreview />,
+  "khoroch-expense-tracker": () => <KhorochPreview />,
+  "ecommerce-saas": () => <EcommerceSaasPreview />,
+  "momentum-productivity": () => <MomentumPreview />,
+  "study-abroad-hub": () => <StudyAbroadPreview />,
+  "maapkathi-studio": () => <MaapkathiStudioPreview />,
 };
 
 const containerVariants = {
