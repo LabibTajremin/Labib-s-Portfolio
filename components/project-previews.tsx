@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import React from "react";
-import { Car, Crown, Heart, CheckCircle2, Circle, GraduationCap, Wallet, ShoppingCart, CalendarCheck, Globe2, Palette, Flame } from "lucide-react";
+import { Car, Crown, Heart, CheckCircle2, Circle, GraduationCap, Wallet, ShoppingCart, CalendarCheck, Globe2, Palette, Flame, Star, Send } from "lucide-react";
 
 // Shared macOS-style window chrome — gives every preview the feel of a real
 // app screenshot instead of a flat illustration.
@@ -852,33 +852,70 @@ export function KhorochPreview() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-emerald-950/30 to-slate-950 p-6 flex flex-col overflow-hidden">
       <WindowChrome title="khoroch.app" />
-      <div className="mb-4 flex items-center gap-2">
-        <Wallet className="h-5 w-5 text-emerald-400" />
-        <h2 className="text-xl font-bold text-white">Khoroch</h2>
-      </div>
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-4 rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-3">
-        <p className="text-[11px] text-emerald-300 mb-1">Type a message</p>
-        <motion.p
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Wallet className="h-5 w-5 text-emerald-400" />
+          <h2 className="text-xl font-bold text-white">Khoroch</h2>
+        </div>
+        <motion.span
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="text-sm text-white font-mono"
+          transition={{ delay: 0.2 }}
+          className="text-[11px] font-semibold text-emerald-300"
         >
-          &ldquo;lunch e 500 taka খরচ হলো&rdquo;
-        </motion.p>
+          ৳12,450 left
+        </motion.span>
+      </div>
+
+      {/* Chat-style expense entry */}
+      <div className="mb-4 space-y-2">
+        <motion.div
+          initial={{ opacity: 0, x: 16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.1 }}
+          className="ml-auto max-w-[80%] rounded-2xl rounded-tr-sm bg-slate-700/60 px-3.5 py-2 text-xs text-slate-100"
+        >
+          lunch e 500 taka খরচ হলো
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: [0, 1, 1, 0] }}
+          transition={{ delay: 0.5, duration: 0.9, times: [0, 0.3, 0.8, 1] }}
+          className="flex w-fit items-center gap-1 rounded-2xl rounded-tl-sm bg-emerald-500/15 px-3 py-2"
+        >
+          {[0, 1, 2].map((i) => (
+            <motion.span
+              key={i}
+              className="h-1.5 w-1.5 rounded-full bg-emerald-400"
+              animate={{ opacity: [0.3, 1, 0.3] }}
+              transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.15 }}
+            />
+          ))}
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: -16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.3 }}
+          className="flex items-start gap-1.5 max-w-[85%] rounded-2xl rounded-tl-sm bg-emerald-500/15 border border-emerald-500/20 px-3.5 py-2 text-xs text-emerald-100"
+        >
+          <Send className="mt-0.5 h-3 w-3 flex-shrink-0 text-emerald-400" />
+          Got it — ৳500 added to <span className="font-semibold">Food</span>
+        </motion.div>
+      </div>
+
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6 }} className="mb-5 flex items-center justify-between rounded-lg bg-slate-800/50 border border-white/10 px-4 py-2.5">
+        <span className="text-xs text-slate-300">Food · ৳500 · 2:14 PM</span>
+        <span className="rounded-md bg-emerald-500/20 px-2 py-1 text-[10px] font-semibold text-emerald-300">Confirmed</span>
       </motion.div>
-      <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.55 }} className="mb-5 flex items-center justify-between rounded-lg bg-slate-800/50 border border-white/10 px-4 py-2.5">
-        <span className="text-xs text-slate-300">Detected: Food · 500 BDT</span>
-        <span className="rounded-md bg-emerald-500/20 px-2 py-1 text-[10px] font-semibold text-emerald-300">Confirm</span>
-      </motion.div>
+
       <div className="flex-1 space-y-3">
         {categories.map((c, i) => (
-          <motion.div key={c.label} initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.7 + i * 0.15 }}>
+          <motion.div key={c.label} initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.8 + i * 0.15 }}>
             <div className="flex justify-between text-[11px] text-slate-400 mb-1">
               <span>{c.label}</span><span>{c.value}%</span>
             </div>
             <div className="h-2 rounded-full bg-slate-800/60 overflow-hidden">
-              <motion.div className={`h-full bg-gradient-to-r ${c.color}`} initial={{ width: 0 }} animate={{ width: `${c.value}%` }} transition={{ delay: 0.9 + i * 0.15, duration: 0.8 }} />
+              <motion.div className={`h-full bg-gradient-to-r ${c.color}`} initial={{ width: 0 }} animate={{ width: `${c.value}%` }} transition={{ delay: 2 + i * 0.15, duration: 0.8 }} />
             </div>
           </motion.div>
         ))}
@@ -889,28 +926,80 @@ export function KhorochPreview() {
 
 // PROJECT: MULTI-TENANT E-COMMERCE SAAS
 export function EcommerceSaasPreview() {
+  const products = [
+    { name: "Linen Shirt", price: "$42", gradient: "from-violet-500/60 to-purple-600/30" },
+    { name: "Canvas Tote", price: "$18", gradient: "from-cyan-500/50 to-violet-600/30" },
+    { name: "Desk Lamp", price: "$65", gradient: "from-fuchsia-500/50 to-violet-600/30" },
+  ];
+  const tenants = ["shop-alpha", "shop-beta", "shop-gamma"];
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-violet-950/30 to-slate-950 p-6 flex flex-col overflow-hidden">
-      <WindowChrome title="storefront.myshop.io" />
+      <WindowChrome title="shop-alpha.myshop.io" />
+
       <div className="mb-4 flex items-center gap-2">
-        <ShoppingCart className="h-5 w-5 text-violet-400" />
-        <h2 className="text-xl font-bold text-white">Storefronts</h2>
+        {tenants.map((t, i) => (
+          <motion.span
+            key={t}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.08 * i }}
+            className={`rounded-full px-3 py-1.5 text-[11px] font-semibold ${
+              i === 0
+                ? "bg-violet-500/30 text-violet-100 border border-violet-400/40"
+                : "bg-white/5 text-slate-400 border border-white/10"
+            }`}
+          >
+            {t}
+          </motion.span>
+        ))}
       </div>
+
+      {/* Storefront preview */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="mb-4 rounded-xl border border-white/10 bg-slate-900/60 p-4"
+      >
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-1.5">
+            <ShoppingCart className="h-3.5 w-3.5 text-violet-300" />
+            <span className="text-[11px] font-semibold text-slate-300">New Arrivals</span>
+          </div>
+          <span className="text-[9px] text-slate-500">12 items</span>
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          {products.map((p, i) => (
+            <motion.div
+              key={p.name}
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.35 + i * 0.1 }}
+              className="rounded-lg border border-white/10 bg-white/5 p-1.5"
+            >
+              <div className={`mb-1.5 aspect-square rounded-md bg-gradient-to-br ${p.gradient}`} />
+              <p className="truncate text-[9px] text-slate-300">{p.name}</p>
+              <p className="text-[10px] font-bold text-white">{p.price}</p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
       <div className="grid grid-cols-2 gap-3 mb-5">
         {[
           { label: "Active Tenants", value: "48" },
           { label: "MRR", value: "$12.4k" },
         ].map((stat, i) => (
-          <motion.div key={stat.label} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.12 }} className="rounded-lg border border-white/10 bg-violet-500/10 p-3">
+          <motion.div key={stat.label} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 + i * 0.12 }} className="rounded-lg border border-white/10 bg-violet-500/10 p-3">
             <p className="text-[11px] text-slate-400">{stat.label}</p>
             <p className="text-lg font-bold text-white">{stat.value}</p>
           </motion.div>
         ))}
       </div>
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="flex-1 rounded-lg border border-white/10 bg-slate-800/40 p-4">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1 }} className="flex-1 rounded-lg border border-white/10 bg-slate-800/40 p-4">
         <p className="text-white text-sm font-semibold mb-3">Checkout Sessions</p>
         {["shop-alpha · Stripe payment succeeded", "shop-beta · Cart updated", "shop-gamma · Plan upgraded to Pro"].map((row, i) => (
-          <motion.div key={row} initial={{ opacity: 0, x: -14 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6 + i * 0.12 }} className="flex items-center gap-2 text-xs text-slate-300 mb-2">
+          <motion.div key={row} initial={{ opacity: 0, x: -14 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.3 + i * 0.12 }} className="flex items-center gap-2 text-xs text-slate-300 mb-2">
             <motion.span animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }} className="h-1.5 w-1.5 rounded-full bg-violet-400" />
             {row}
           </motion.div>
@@ -1042,6 +1131,11 @@ export function MomentumPreview() {
 
 // PROJECT: STUDY ABROAD UNIVERSITY HUB
 export function StudyAbroadPreview() {
+  const universities = [
+    { name: "University of Toronto", flag: "🇨🇦", rating: 4.7, tuition: "$45k/yr", selected: true },
+    { name: "TU Munich", flag: "🇩🇪", rating: 4.5, tuition: "€500/yr", selected: true },
+    { name: "National University of Singapore", flag: "🇸🇬", rating: 4.6, tuition: "$38k/yr", selected: false },
+  ];
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-sky-950/30 to-slate-950 p-6 flex flex-col overflow-hidden">
       <WindowChrome title="study-abroad-university-hub" />
@@ -1049,51 +1143,118 @@ export function StudyAbroadPreview() {
         <Globe2 className="h-5 w-5 text-sky-400" />
         <h2 className="text-xl font-bold text-white">Universities</h2>
       </div>
-      <div className="space-y-3 flex-1">
-        {["University of Toronto", "TU Munich", "National University of Singapore"].map((uni, i) => (
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="mb-4 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-[11px] text-slate-500"
+      >
+        Search universities, countries, programs...
+      </motion.div>
+
+      <div className="space-y-2.5 flex-1">
+        {universities.map((uni, i) => (
           <motion.div
-            key={uni}
+            key={uni.name}
             initial={{ opacity: 0, x: -18 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.15 }}
-            className="flex items-center justify-between rounded-lg border border-white/10 bg-sky-500/10 px-4 py-2.5"
+            className="rounded-lg border border-white/10 bg-sky-500/10 px-4 py-2.5"
           >
-            <span className="text-xs text-slate-200">{uni}</span>
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 + i * 0.15 }}
-              className="text-[10px] font-semibold text-sky-300"
-            >
-              Compare
-            </motion.span>
+            <div className="flex items-center justify-between">
+              <span className="flex items-center gap-1.5 text-xs text-slate-200">
+                <span>{uni.flag}</span>
+                {uni.name}
+              </span>
+              <motion.button
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.3 + i * 0.15 }}
+                className={`flex items-center gap-1 rounded-full border px-2 py-0.5 text-[9px] font-semibold ${
+                  uni.selected
+                    ? "border-sky-400/50 bg-sky-500/25 text-sky-200"
+                    : "border-white/15 text-slate-500"
+                }`}
+              >
+                {uni.selected && <CheckCircle2 className="h-2.5 w-2.5" />}
+                Compare
+              </motion.button>
+            </div>
+            <div className="mt-1.5 flex items-center gap-3 text-[9px] text-slate-400">
+              <span className="flex items-center gap-0.5">
+                <Star className="h-2.5 w-2.5 fill-amber-400 text-amber-400" /> {uni.rating}
+              </span>
+              <span>{uni.tuition} tuition</span>
+            </div>
           </motion.div>
         ))}
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8 }}
+        className="mt-4 flex items-center justify-between rounded-lg border border-sky-400/30 bg-sky-500/15 px-4 py-2.5"
+      >
+        <span className="text-[11px] font-medium text-sky-100">2 universities selected</span>
+        <span className="rounded-md bg-sky-400/90 px-2.5 py-1 text-[10px] font-bold text-slate-950">Compare Now</span>
+      </motion.div>
     </div>
   );
 }
 
 // PROJECT: MAAPKATHI STUDIO
 export function MaapkathiStudioPreview() {
+  const projects = [
+    { name: "Nordé Rebrand", gradient: "from-fuchsia-500/50 to-purple-600/30" },
+    { name: "Aurelia Studio", gradient: "from-cyan-500/40 to-fuchsia-600/30" },
+    { name: "Loop Motion", gradient: "from-violet-500/50 to-purple-600/30", featured: true },
+  ];
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-fuchsia-950/30 to-slate-950 p-6 flex flex-col overflow-hidden">
-      <WindowChrome title="maapkathi.studio" />
-      <div className="mb-4 flex items-center gap-2">
-        <Palette className="h-5 w-5 text-fuchsia-400" />
-        <h2 className="text-xl font-bold text-white">Studio Showcase</h2>
+      <WindowChrome title="studio-showcase.app" />
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Palette className="h-5 w-5 text-fuchsia-400" />
+          <h2 className="text-xl font-bold text-white">Studio Showcase</h2>
+        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-0.5 text-[9px] font-semibold"
+        >
+          <span className="rounded-full bg-fuchsia-500/30 px-2 py-1 text-fuchsia-100">SaaS</span>
+          <span className="px-2 py-1 text-slate-500">Self-hosted</span>
+        </motion.div>
       </div>
+
       <div className="grid grid-cols-3 gap-3 mb-5">
-        {[0, 1, 2].map((i) => (
+        {projects.map((p, i) => (
           <motion.div
-            key={i}
+            key={p.name}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.12 }}
-            className="aspect-square rounded-lg bg-gradient-to-br from-fuchsia-500/40 to-purple-500/20 border border-white/10"
-          />
+            whileHover={{ scale: 1.03 }}
+            className={`group/proj relative aspect-square overflow-hidden rounded-lg bg-gradient-to-br ${p.gradient} border border-white/10`}
+          >
+            {p.featured && (
+              <span className="absolute left-1 top-1 rounded bg-black/50 px-1.5 py-0.5 text-[7px] font-bold text-fuchsia-200">
+                Featured
+              </span>
+            )}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileHover={{ opacity: 1 }}
+              className="absolute inset-0 flex items-end bg-black/50 p-1.5 opacity-0 transition-opacity group-hover/proj:opacity-100"
+            >
+              <span className="text-[8px] font-semibold text-white">{p.name}</span>
+            </motion.div>
+          </motion.div>
         ))}
       </div>
+
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }} className="flex-1 rounded-lg border border-white/10 bg-slate-800/40 p-4">
         <p className="text-white text-sm font-semibold mb-3">Deployment Mode</p>
         {["SaaS · multi-tenant hosted", "Self-hosted · license verified offline", "88 unit · 18 integration · 8 E2E passing"].map((row, i) => (
