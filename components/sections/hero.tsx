@@ -173,7 +173,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="relative mx-auto w-full max-w-[420px] lg:justify-self-end"
+            className="relative mx-auto w-full max-w-[560px] lg:justify-self-end"
           >
             <HeroCodeCard />
 
@@ -221,12 +221,23 @@ export function Hero() {
 }
 
 const CODE_LINES: { indent: number; tokens: { text: string; className: string }[] }[] = [
-  { indent: 0, tokens: [{ text: "const", className: "text-pink-400" }, { text: " developer ", className: "text-slate-200" }, { text: "=", className: "text-pink-400" }, { text: " {", className: "text-slate-400" }] },
-  { indent: 1, tokens: [{ text: "name", className: "text-cyan-300" }, { text: ": ", className: "text-slate-400" }, { text: '"Labib Tajremin"', className: "text-emerald-300" }, { text: ",", className: "text-slate-400" }] },
-  { indent: 1, tokens: [{ text: "role", className: "text-cyan-300" }, { text: ": ", className: "text-slate-400" }, { text: '"Software Engineer"', className: "text-emerald-300" }, { text: ",", className: "text-slate-400" }] },
-  { indent: 1, tokens: [{ text: "stack", className: "text-cyan-300" }, { text: ": [", className: "text-slate-400" }, { text: '"C#", ".NET", "React", "Azure"', className: "text-emerald-300" }, { text: "],", className: "text-slate-400" }] },
-  { indent: 1, tokens: [{ text: "status", className: "text-cyan-300" }, { text: ": ", className: "text-slate-400" }, { text: '"open_to_work"', className: "text-amber-300" }, { text: ",", className: "text-slate-400" }] },
-  { indent: 0, tokens: [{ text: "};", className: "text-slate-400" }] }
+  { indent: 0, tokens: [{ text: "interface ", className: "text-pink-400" }, { text: "Engineer ", className: "text-amber-300" }, { text: "{", className: "text-slate-400" }] },
+  { indent: 1, tokens: [{ text: "readonly ", className: "text-pink-400" }, { text: "name", className: "text-cyan-300" }, { text: ": ", className: "text-slate-400" }, { text: "string", className: "text-blue-300" }, { text: ";", className: "text-slate-400" }] },
+  { indent: 1, tokens: [{ text: "yearsOfExperience", className: "text-cyan-300" }, { text: ": ", className: "text-slate-400" }, { text: "number", className: "text-blue-300" }, { text: ";", className: "text-slate-400" }] },
+  { indent: 1, tokens: [{ text: "stack", className: "text-cyan-300" }, { text: ": ", className: "text-slate-400" }, { text: "string", className: "text-blue-300" }, { text: "[];", className: "text-slate-400" }] },
+  { indent: 0, tokens: [{ text: "}", className: "text-slate-400" }] },
+  { indent: 0, tokens: [] },
+  { indent: 0, tokens: [{ text: "class ", className: "text-pink-400" }, { text: "LabibTajremin ", className: "text-amber-300" }, { text: "implements ", className: "text-pink-400" }, { text: "Engineer ", className: "text-amber-300" }, { text: "{", className: "text-slate-400" }] },
+  { indent: 1, tokens: [{ text: "readonly ", className: "text-pink-400" }, { text: "name", className: "text-cyan-300" }, { text: " = ", className: "text-slate-400" }, { text: '"Labib Tajremin"', className: "text-emerald-300" }, { text: ";", className: "text-slate-400" }] },
+  { indent: 1, tokens: [{ text: "yearsOfExperience", className: "text-cyan-300" }, { text: " = ", className: "text-slate-400" }, { text: "5", className: "text-orange-300" }, { text: ";", className: "text-slate-400" }] },
+  { indent: 1, tokens: [{ text: "stack", className: "text-cyan-300" }, { text: " = [", className: "text-slate-400" }, { text: '"C#", ".NET", "React", "Azure"', className: "text-emerald-300" }, { text: "];", className: "text-slate-400" }] },
+  { indent: 0, tokens: [] },
+  { indent: 1, tokens: [{ text: "async ", className: "text-pink-400" }, { text: "shipFeature", className: "text-blue-300" }, { text: "(): ", className: "text-slate-400" }, { text: "Promise", className: "text-amber-300" }, { text: "<Impact> {", className: "text-slate-400" }] },
+  { indent: 2, tokens: [{ text: "return ", className: "text-pink-400" }, { text: "deploy", className: "text-blue-300" }, { text: "({ quality: ", className: "text-slate-400" }, { text: '"production-grade"', className: "text-emerald-300" }, { text: " });", className: "text-slate-400" }] },
+  { indent: 1, tokens: [{ text: "}", className: "text-slate-400" }] },
+  { indent: 0, tokens: [{ text: "}", className: "text-slate-400" }] },
+  { indent: 0, tokens: [] },
+  { indent: 0, tokens: [{ text: "export default ", className: "text-pink-400" }, { text: "new ", className: "text-pink-400" }, { text: "LabibTajremin", className: "text-amber-300" }, { text: "();", className: "text-slate-400" }] }
 ];
 
 function HeroCodeCard() {
@@ -254,29 +265,29 @@ function HeroCodeCard() {
         />
 
         {/* Window chrome */}
-        <div className="flex items-center gap-2 border-b border-white/10 bg-black/30 px-4 py-3">
-          <div className="flex gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
-            <span className="h-2.5 w-2.5 rounded-full bg-amber-500/70" />
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/70" />
+        <div className="flex items-center gap-2 border-b border-white/10 bg-black/30 px-5 py-3.5">
+          <div className="flex gap-2">
+            <span className="h-3 w-3 rounded-full bg-red-500/70" />
+            <span className="h-3 w-3 rounded-full bg-amber-500/70" />
+            <span className="h-3 w-3 rounded-full bg-emerald-500/70" />
           </div>
-          <div className="ml-2 flex-1 truncate rounded-md bg-white/5 px-3 py-1 text-center text-[11px] font-medium tracking-wide text-slate-400">
-            profile.ts
+          <div className="ml-2 flex-1 truncate rounded-md bg-white/5 px-3 py-1.5 text-center text-xs font-medium tracking-wide text-slate-400">
+            engineer.ts
           </div>
         </div>
 
         {/* Code body */}
-        <div className="p-6 font-mono text-[13px] leading-relaxed sm:text-sm">
+        <div className="p-7 font-mono text-sm leading-relaxed sm:p-8 sm:text-[15px]">
           {CODE_LINES.map((line, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 + i * 0.18, duration: 0.4, ease: "easeOut" }}
-              style={{ paddingLeft: `${line.indent * 1.25}rem` }}
+              transition={{ delay: 0.5 + i * 0.11, duration: 0.35, ease: "easeOut" }}
+              style={{ paddingLeft: `${line.indent * 1.4}rem` }}
               className="whitespace-pre"
             >
-              <span className="mr-3 select-none text-slate-600">{String(i + 1).padStart(2, "0")}</span>
+              <span className="mr-4 select-none text-slate-600">{String(i + 1).padStart(2, "0")}</span>
               {line.tokens.map((t, j) => (
                 <span key={j} className={t.className}>
                   {t.text}
@@ -284,7 +295,7 @@ function HeroCodeCard() {
               ))}
               {i === CODE_LINES.length - 1 && (
                 <motion.span
-                  className="ml-1 inline-block h-4 w-[7px] translate-y-[2px] bg-primary align-middle"
+                  className="ml-1 inline-block h-[1.1em] w-[8px] translate-y-[3px] bg-primary align-middle"
                   animate={{ opacity: [1, 0, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
                 />
@@ -297,8 +308,8 @@ function HeroCodeCard() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.9, duration: 0.5 }}
-          className="flex items-center justify-between border-t border-white/10 bg-black/20 px-4 py-2.5 text-[11px] text-slate-400"
+          transition={{ delay: 2.4, duration: 0.5 }}
+          className="flex items-center justify-between border-t border-white/10 bg-black/20 px-5 py-3 text-xs text-slate-400"
         >
           <span className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse-glow" />
