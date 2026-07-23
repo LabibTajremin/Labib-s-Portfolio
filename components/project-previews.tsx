@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import React from "react";
-import { Car, Crown, Heart, CheckCircle2, Circle, GraduationCap, Wallet, ShoppingCart, CalendarCheck, Globe2, Palette } from "lucide-react";
+import { Car, Crown, Heart, CheckCircle2, Circle, GraduationCap, Wallet, ShoppingCart, CalendarCheck, Globe2, Palette, Flame } from "lucide-react";
 
 // Shared macOS-style window chrome — gives every preview the feel of a real
 // app screenshot instead of a flat illustration.
@@ -728,33 +728,113 @@ export function DonationPlatformPreview() {
 
 // PROJECT: MULTI-TENANT ACADEMIC LAB PLATFORM
 export function AcademicLabPreview() {
+  const tenants = ["Bio Lab", "Robotics Lab", "AI Lab"];
+  const gallery = [
+    "from-indigo-500/70 to-violet-600/40",
+    "from-cyan-500/60 to-indigo-600/40",
+    "from-fuchsia-500/50 to-indigo-600/40",
+    "from-violet-500/60 to-blue-600/40",
+  ];
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-indigo-950/40 to-slate-950 p-6 flex flex-col overflow-hidden">
       <WindowChrome title="lab-platform-chi.vercel.app" />
-      <div className="mb-5 flex items-center gap-2">
-        <GraduationCap className="h-5 w-5 text-indigo-400" />
-        <h2 className="text-xl font-bold text-white">Research Lab Sites</h2>
-      </div>
-      <div className="grid grid-cols-3 gap-3 mb-5">
-        {["Bio Lab", "Robotics Lab", "AI Lab"].map((tenant, i) => (
-          <motion.div
+
+      {/* Tenant switcher */}
+      <div className="mb-4 flex items-center gap-2">
+        {tenants.map((tenant, i) => (
+          <motion.span
             key={tenant}
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 * i }}
-            className="rounded-lg border border-white/10 bg-indigo-500/10 backdrop-blur-sm p-3"
+            className={`rounded-full px-3 py-1.5 text-[11px] font-semibold ${
+              i === 0
+                ? "bg-indigo-500/30 text-indigo-100 border border-indigo-400/40"
+                : "bg-white/5 text-slate-400 border border-white/10"
+            }`}
           >
-            <div className="h-10 w-full rounded bg-gradient-to-br from-indigo-500/40 to-violet-500/30 mb-2" />
-            <p className="text-[11px] text-slate-300 font-medium">{tenant}</p>
-            <p className="text-[9px] text-indigo-300">{tenant.toLowerCase().replace(" ", "-")}.lab.edu</p>
-          </motion.div>
+            {tenant}
+          </motion.span>
         ))}
       </div>
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="flex-1 rounded-lg border border-white/10 bg-slate-800/40 p-4">
+
+      {/* Mini site preview */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25 }}
+        className="rounded-xl border border-white/10 bg-slate-900/60 p-4 mb-4"
+      >
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-1.5">
+            <GraduationCap className="h-3.5 w-3.5 text-indigo-300" />
+            <span className="text-[10px] font-semibold text-slate-300">bio-lab.lab.edu</span>
+          </div>
+          <div className="flex gap-2 text-[9px] text-slate-500">
+            <span>Research</span><span>People</span><span>Contact</span>
+          </div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="mb-1 h-4 w-3/4 rounded bg-gradient-to-r from-indigo-300 to-violet-300"
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mb-3 h-2.5 w-1/2 rounded bg-slate-700"
+        />
+
+        <div className="grid grid-cols-4 gap-2">
+          {gallery.map((g, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.6 + i * 0.1 }}
+              className={`aspect-square rounded-md bg-gradient-to-br ${g}`}
+            />
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Live stats */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1 }}
+        className="grid grid-cols-3 gap-3 mb-4"
+      >
+        {[
+          { label: "Papers", value: "24" },
+          { label: "Members", value: "18" },
+          { label: "Funding", value: "$2.4M" },
+        ].map((stat, i) => (
+          <div key={stat.label} className="rounded-lg border border-white/10 bg-indigo-500/10 px-3 py-2 text-center">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1 + i * 0.1 }}
+              className="text-base font-bold text-white"
+            >
+              {stat.value}
+            </motion.p>
+            <p className="text-[9px] text-indigo-300">{stat.label}</p>
+          </div>
+        ))}
+      </motion.div>
+
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3 }} className="flex-1 rounded-lg border border-white/10 bg-slate-800/40 p-4">
         <p className="text-white text-sm font-semibold mb-3">Admin — Publications</p>
         {["RLS tenant isolation verified", "New paper published", "Gallery synced to S3"].map((item, i) => (
-          <motion.div key={item} initial={{ opacity: 0, x: -14 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.7 + i * 0.12 }} className="flex items-center gap-2 text-xs text-slate-300 mb-2">
-            <CheckCircle2 className="h-3.5 w-3.5 text-indigo-400" /> {item}
+          <motion.div key={item} initial={{ opacity: 0, x: -14 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.5 + i * 0.12 }} className="flex items-center gap-2 text-xs text-slate-300 mb-2">
+            <motion.span animate={{ scale: [1, 1.25, 1] }} transition={{ duration: 1, repeat: Infinity, delay: i * 0.3 }}>
+              <CheckCircle2 className="h-3.5 w-3.5 text-indigo-400" />
+            </motion.span>
+            {item}
           </motion.div>
         ))}
       </motion.div>
@@ -843,31 +923,115 @@ export function EcommerceSaasPreview() {
 // PROJECT: MOMENTUM PRODUCTIVITY DASHBOARD
 export function MomentumPreview() {
   const bars = [40, 65, 50, 80, 60, 90, 45];
+  const dayLabels = ["S", "M", "T", "W", "T", "F", "S"];
+  const completedDays = [1, 2, 4, 5, 8, 9, 10, 12, 13, 14, 15, 17, 18];
+  const today = 18;
+  const tasks = [
+    { label: "Morning workout", done: true, tag: null as string | null },
+    { label: "Write blog post", done: false, tag: "High" },
+    { label: "Review pull requests", done: false, tag: "Medium" },
+  ];
+  const tagColor: Record<string, string> = {
+    High: "bg-rose-500/20 text-rose-300 border-rose-500/30",
+    Medium: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+  };
+
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-950 via-cyan-950/30 to-slate-950 p-6 flex flex-col overflow-hidden">
       <WindowChrome title="productive-calender.vercel.app/dashboard" />
-      <div className="mb-4 flex items-center gap-2">
-        <CalendarCheck className="h-5 w-5 text-cyan-400" />
-        <h2 className="text-xl font-bold text-white">Momentum</h2>
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <CalendarCheck className="h-5 w-5 text-cyan-400" />
+          <h2 className="text-xl font-bold text-white">Momentum</h2>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3 }}
+          className="flex items-center gap-1 rounded-full border border-orange-500/30 bg-orange-500/10 px-2.5 py-1"
+        >
+          <Flame className="h-3 w-3 text-orange-400" />
+          <span className="text-[10px] font-bold text-orange-300">12 day streak</span>
+        </motion.div>
       </div>
-      <div className="grid grid-cols-7 gap-1.5 mb-5">
-        {Array.from({ length: 21 }).map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.01 * i }}
-            className={`aspect-square rounded-sm ${i % 4 === 0 ? "bg-cyan-500/60" : i % 3 === 0 ? "bg-cyan-500/25" : "bg-slate-800/60"}`}
-          />
+
+      <div className="grid grid-cols-7 gap-1.5 mb-1 text-center">
+        {dayLabels.map((d, i) => (
+          <span key={i} className="text-[9px] font-medium text-slate-500">{d}</span>
         ))}
       </div>
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="flex-1 rounded-lg border border-white/10 bg-slate-800/40 p-4 flex items-end gap-2">
+      <div className="grid grid-cols-7 gap-1.5 mb-5">
+        {Array.from({ length: 21 }).map((_, i) => {
+          const day = i + 1;
+          const isDone = completedDays.includes(day);
+          const isToday = day === today;
+          return (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.6 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.01 * i }}
+              className={`relative flex aspect-square items-center justify-center rounded-md text-[9px] font-semibold ${
+                isDone ? "bg-cyan-500/70 text-white" : "bg-slate-800/60 text-slate-500"
+              } ${isToday ? "ring-2 ring-cyan-300" : ""}`}
+            >
+              {day}
+              {isDone && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.02 * i + 0.2 }}
+                  className="absolute -right-1 -top-1 flex h-3 w-3 items-center justify-center rounded-full bg-emerald-400"
+                >
+                  <CheckCircle2 className="h-2.5 w-2.5 text-slate-950" />
+                </motion.span>
+              )}
+            </motion.div>
+          );
+        })}
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="mb-4 rounded-lg border border-white/10 bg-slate-800/40 p-3"
+      >
+        {tasks.map((task, i) => (
+          <motion.div
+            key={task.label}
+            initial={{ opacity: 0, x: -14 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.7 + i * 0.12 }}
+            className="mb-2 flex items-center justify-between last:mb-0"
+          >
+            <div className="flex items-center gap-2">
+              {task.done ? (
+                <CheckCircle2 className="h-3.5 w-3.5 text-cyan-400" />
+              ) : (
+                <Circle className="h-3.5 w-3.5 text-slate-600" />
+              )}
+              <span className={`text-xs ${task.done ? "text-slate-500 line-through" : "text-slate-200"}`}>
+                {task.label}
+              </span>
+            </div>
+            {task.tag && (
+              <span className={`rounded-full border px-2 py-0.5 text-[9px] font-semibold ${tagColor[task.tag]}`}>
+                {task.tag}
+              </span>
+            )}
+          </motion.div>
+        ))}
+      </motion.div>
+
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }} className="flex-1 rounded-lg border border-white/10 bg-slate-800/40 p-4 flex items-end gap-2">
         {bars.map((h, i) => (
           <motion.div
             key={i}
             initial={{ height: 0 }}
             animate={{ height: `${h}%` }}
-            transition={{ delay: 0.5 + i * 0.08, duration: 0.7 }}
+            transition={{ delay: 1.1 + i * 0.08, duration: 0.7 }}
+            whileHover={{ scaleY: 1.05 }}
             className="flex-1 rounded-t-sm bg-gradient-to-t from-cyan-500 to-blue-400"
           />
         ))}
